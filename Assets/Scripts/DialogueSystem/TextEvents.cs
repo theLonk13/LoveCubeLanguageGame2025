@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // this script identifies and executes events based on link tags found in text box
@@ -10,9 +11,9 @@ public class TextEvents : MonoBehaviour
         TextEventInvoker.LinkFound += CheckEventType;
     }
 
-    public void CheckEventType(string eventType)
+    public void CheckEventType(TMP_LinkInfo textEvent)
     {
-        switch (eventType)
+        switch (textEvent.GetLinkID())
         {
             case "testEvent1":
                 Debug.Log("test1 event triggered");

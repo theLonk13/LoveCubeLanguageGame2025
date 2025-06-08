@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 public class TextEventInvoker : MonoBehaviour
 {
     [SerializeField] private TMP_Text textbox;
-    public static event Action<string> LinkFound;
+    public static event Action<TMPro.TMP_LinkInfo> LinkFound;
 
     private int eventsTriggered = 0;
 
@@ -44,7 +44,7 @@ public class TextEventInvoker : MonoBehaviour
             if(eventsTriggered <= linkIndex)
             {
                 //Debug.LogFormat($"Attempting to trigger event number {eventsTriggered}");
-                LinkFound?.Invoke(linkInfo.GetLinkID());
+                LinkFound?.Invoke(linkInfo);
                 eventsTriggered++;
                 break;
             }
