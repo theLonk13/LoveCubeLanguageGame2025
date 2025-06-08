@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6705e1a4692ab54fb36cfce86413409, type: 3}
+  m_Name: testScript1
+  m_EditorClassIdentifier: 
+  speakerName: Tester
+  sentences:
+  - A sentence <style="KeyTextRed"><link="testObj1">with</style></link> a key word
+    somewhere.
+  - A second sentence with a key <style="KeyTextRed"><link="testObj2">word</style></link>
+    somewhere.
+  - A third sentence with the same object as the first <style="KeyTextRed"><link="testObj1">sentence</style></link>.
+  - Now <style="KeyTextRed"><link="testObj1">what</style></link> if we put them <style="KeyTextRed"><link="testObj2">together?</style></link>
+  - Okay what if we made something trigger an<link="testEvent1"> event?</link>
