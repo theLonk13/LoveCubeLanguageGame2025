@@ -38,6 +38,9 @@ public class DialogueManager : MonoBehaviour
     // Choice textboxes
     [SerializeField] private TMP_Text[] choiceTextboxes;
 
+    // dialoguebox animator
+    [SerializeField] private Animator dialogueAnim;
+
     void Awake()
     {
         sentences = new List<string>();
@@ -155,5 +158,10 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.LogFormat($"Jumping to line{line}");
         sentenceTracker = line - 1;
+    }
+
+    public void ToggleDialogueOpen(bool show)
+    {
+        dialogueAnim.SetBool("Open", show);
     }
 }

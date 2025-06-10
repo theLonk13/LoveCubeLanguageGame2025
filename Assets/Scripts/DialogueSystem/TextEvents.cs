@@ -9,6 +9,7 @@ using System;
 public class TextEvents : MonoBehaviour
 {
     [SerializeField] DialogueManager dialogueMan;
+    [SerializeField] MinigameManager minigameMan;
     private void Awake()
     {
         TextEventInvoker.LinkFound += CheckEventType;
@@ -31,6 +32,8 @@ public class TextEvents : MonoBehaviour
                 HandleJumpToLine(textEvent.GetLinkText());
                 break;
             case "CloseDialogue":
+                break;
+            case "Captcha":
                 break;
             default:
                 Debug.Log("default event triggered");
