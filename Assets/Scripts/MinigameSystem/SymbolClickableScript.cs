@@ -30,6 +30,11 @@ public class SymbolClickableScript : MonoBehaviour
         float rectWidth = topScreenRect.rect.width;
         float rectHeight = topScreenRect.rect.height;
         this.gameObject.transform.localPosition = new Vector3(Random.Range(-rectWidth/2, rectWidth/2), Random.Range(-rectHeight/2, rectHeight/2), 1);
+        while (!minigameMan.CheckSymbolClickableSpacing(this.gameObject.transform))
+        {
+            this.gameObject.transform.localPosition = new Vector3(Random.Range(-rectWidth / 2, rectWidth / 2), Random.Range(-rectHeight / 2, rectHeight / 2), 1);
+        }
+        //Debug.LogFormat($"SymbolClickable ID: {symbolID} placed at {gameObject.transform.localPosition}");
     }
 
     public void SymbolClicked()

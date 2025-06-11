@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
 {
+    // Conversation Manager
+    [SerializeField] private ConversationManager conversationMan;
+
     // Tracks what are the taret symbols for the player
     private Color[] requiredSymbols;
     private int[] requiredSymbolsIDs;
@@ -28,6 +31,10 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private GameObject symbolClickablePrefab;
     // Top Screen parent
     [SerializeField] private GameObject symbolClickableParent;
+    // Array of clickable symbols transforms
+    private Transform[] symbolClickableTransforms = new Transform[1];
+    // Minimum distance between two clickable symbols
+    [SerializeField] float minSymbolDistance = 40.0f;
 
     // Animator for Minigame window
     [SerializeField] private Animator minigameWindowAnimator;
@@ -81,12 +88,32 @@ public class MinigameManager : MonoBehaviour
 
     private void SetupTopScreen()
     {
+        symbolClickableTransforms = new Transform[possibleSymbols.Count];
+        int index = 0;
         foreach(Color symbol in possibleSymbols)
         {
             Object newSymbolClickable = Object.Instantiate(symbolClickablePrefab, symbolClickableParent.transform);
             SymbolClickableScript newSymbolClickableScript = newSymbolClickable.GetComponent<SymbolClickableScript>();
             newSymbolClickableScript.SetupSymbolClickable(this, possibleSymbols.IndexOf(symbol), symbol);
+            symbolClickableTransforms[index] = newSymbolClickable.GetComponent<Transform>();
+            index++;
         }
+
+        foreach(Transform transform in symbolClickableTransforms)
+        {
+            //Debug.LogFormat($"{transform.localPosition}");
+        }
+    }
+
+    public bool CheckSymbolClickableSpacing(Transform transform)
+    {
+        if (transform == null) return false;
+        foreach (Transform currSymbolTransform in symbolClickableTransforms)
+        {
+            if (currSymbolTransform == null) break;
+            if (transform != currSymbolTransform && Vector3.Distance(transform.localPosition, currSymbolTransform.localPosition) < minSymbolDistance) return false;
+        }
+        return true;
     }
 
     public void SymbolClicked(int symbolID)
@@ -110,6 +137,7 @@ public class MinigameManager : MonoBehaviour
     {
         ToggleMinigameWindow(false);
         CleanUpMinigameWindow();
+        if(conversationMan != null) conversationMan.FinishMinigame();
     }
 
     private void ToggleMinigameWindow(bool isOpen)

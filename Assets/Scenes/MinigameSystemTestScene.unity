@@ -803,6 +803,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1588296227}
     - target: {fileID: 3512199606881043900, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: minSymbolDistance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512199606881043900, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
       propertyPath: symbolClickableParent
       value: 
       objectReference: {fileID: 1601994990}
