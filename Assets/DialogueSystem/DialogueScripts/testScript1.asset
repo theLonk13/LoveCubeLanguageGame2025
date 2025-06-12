@@ -16,7 +16,7 @@ MonoBehaviour:
   sentences:
   - <link="test"><size=0%><weewooweewoo:></link></size>There is a tag at the start
     of this sentence.
-  - Letterbox <link="Letterbox"><size=0%><;0;20;1;0;20;1;0:0:1;1:0:0;></link></size>testing
+  - Letterbox <link="Letterbox"><size=0%><;25;20;1;25;40;1;0:0:1;1:0:0;></link></size>testing
   - A sentence <style="KeyTextRed"><link="testObj1">with</style></link> a key word
     somewhere.
   - A second sentence with a key <style="KeyTextRed"><link="testObj2">word</style></link>
