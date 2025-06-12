@@ -11,7 +11,7 @@ public class ConversationManager : MonoBehaviour
 {
     [SerializeField] DialogueManager dialogueMan;
     [SerializeField] MinigameManager minigameMan;
-    [SerializeField] LetterboxManager letterboxMan;
+    [SerializeField] LetterboxAnimator letterboxMan;
 
     private bool showChoices = false; // tracks whether the choices ui should be currently shown
     private bool showChoicesUpdated = false; // tracks whether the value of showChoices has been changed from its previous value, and needs to be updated
@@ -53,5 +53,17 @@ public class ConversationManager : MonoBehaviour
     {
         dialogueMan.ToggleDialogueOpen(true);
         dialogueMan.DisplayNextSentence();
+    }
+
+    public void AnimateLetterbox(float topStart, float topEnd, float topDuration, float botStart, float botEnd, float botDuration)
+    {
+        letterboxMan.AnimateTopBar(topStart, topEnd, topDuration);
+        letterboxMan.AnimateBottomBar(botStart, botEnd, botDuration);
+    }
+
+    public void AnimateLetterbox(float topStart, float topEnd, float topDuration, float botStart, float botEnd, float botDuration, Color topColor, Color botColor)
+    {
+        letterboxMan.AnimateTopBar(topStart, topEnd, topDuration);
+        letterboxMan.AnimateBottomBar(botStart, botEnd, botDuration);
     }
 }

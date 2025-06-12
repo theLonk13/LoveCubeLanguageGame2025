@@ -43,6 +43,9 @@ public class TextEvents : MonoBehaviour
                 int numSymbols = int.Parse(textEvent.GetLinkText());
                 conversationMan.StartMinigame(numSymbols);
                 break;
+            case "Letterbox":
+                ParseAndSendLetterboxData(textEvent.GetLinkText());
+                break;
             default:
                 Debug.Log("default event triggered");
                 break;
@@ -87,5 +90,57 @@ public class TextEvents : MonoBehaviour
     {
         int lineJump = int.Parse(linkText);
         dialogueMan.JumpToLine(lineJump);
+    }
+
+
+    // Letterbox data should be formatted <;[topStart];[topEnd];[topDuration];[botStart];[botEnd];[botDuration];[topColor];[botColor];>
+    // Colors are in the format r:g:b
+    // Use <size=0%> tag to make the letterbox data invisible mid sentence
+    private void ParseAndSendLetterboxData(string linkText)
+    {
+        string[] splitStrings = linkText.Split(';');
+
+        float topStart = 0f;
+        float topEnd = 0f;
+        float topDuration = 0f;
+        float botStart = 0f;
+        float botEnd = 0f;
+        float botDuration = 0f;
+        Color topColor = Color.black;
+        Color botColor = Color.black;
+
+        try
+        {
+            topStart = float.Parse(splitStrings[1]);
+            topEnd = float.Parse(splitStrings[2]);
+            topDuration = float.Parse(splitStrings[3]);
+            botStart = float.Parse(splitStrings[4]);
+            botEnd = float.Parse(splitStrings[5]);
+            botDuration = float.Parse(splitStrings[6]);
+        }
+        catch (Exception e)
+        {
+            Debug.LogFormat($"Error parsing letterbox float data: {e.Message}");
+        }
+
+        try
+        {
+            if (splitStrings[7] != "")
+            {
+                string[] topColorSeparate = splitStrings[7].Split(':');
+                topColor = new Color(float.Parse(topColorSeparate[0]), float.Parse(topColorSeparate[1]), float.Parse(topColorSeparate[2]));
+            }
+            if(splitStrings[8] != "")
+            {
+                string[] botColorSeparate = splitStrings[8].Split(':');
+                botColor = new Color(float.Parse(botColorSeparate[0]), float.Parse(botColorSeparate[1]), float.Parse(botColorSeparate[2]));
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogFormat($"Error parsing letterbox color data: {e.Message}");
+        }
+
+        conversationMan.AnimateLetterbox(topStart, topEnd, topDuration, botStart, botEnd, botDuration, topColor, botColor);
     }
 }
