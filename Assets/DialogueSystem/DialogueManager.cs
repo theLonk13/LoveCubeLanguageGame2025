@@ -38,6 +38,9 @@ public class DialogueManager : MonoBehaviour
     // Choice textboxes
     [SerializeField] private TMP_Text[] choiceTextboxes;
 
+    // dialoguebox animator
+    [SerializeField] private Animator dialogueAnim;
+
     void Awake()
     {
         sentences = new List<string>();
@@ -54,10 +57,12 @@ public class DialogueManager : MonoBehaviour
         sentenceTracker = -1;
 
         nameTextBox.text = dialogue.speakerName;
+        dialogueAnim.SetBool("Open", true);
     }
 
     public void DisplayNextSentence()
     {
+        if (choicesUI.activeSelf) { return; }
         if (typing)
         {
             StopCoroutine(currDialogue);
@@ -122,6 +127,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        dialogueAnim.SetBool("Open", false);
         //Handle End of Dialogue
     }
 
@@ -141,9 +147,14 @@ public class DialogueManager : MonoBehaviour
     //Sets up dialogue to flow accordingly to the choice player has selected
     public void SelectChoice(int choiceIndex)
     {
+        ShowChoices(false);
+        if (choiceLineJumpIndices[choiceIndex] < -1)
+        {
+            ToggleDialogueOpen(false);
+            return;
+        }
         sentenceTracker = choiceLineJumpIndices[choiceIndex] - 1;
         DisplayNextSentence();
-        ShowChoices(false);
     }
 
     public void ShowChoices(bool show)
@@ -155,5 +166,10 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.LogFormat($"Jumping to line{line}");
         sentenceTracker = line - 1;
+    }
+
+    public void ToggleDialogueOpen(bool show)
+    {
+        dialogueAnim.SetBool("Open", show);
     }
 }

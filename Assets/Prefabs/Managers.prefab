@@ -31,8 +31,86 @@ Transform:
   m_Children:
   - {fileID: 3716365659226905576}
   - {fileID: 6137101269147897618}
+  - {fileID: 8465746862611656461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &437392001116495271
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5749270547851111493}
+    m_Modifications:
+    - target: {fileID: 2803234809559987641, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_Name
+      value: MinigameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512199606881043900, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: conversationMan
+      value: 
+      objectReference: {fileID: 8118678567100274988}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 556.5217
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 332.6762
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.6412563
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+--- !u!114 &3939589032753502235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3512199606881043900, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+  m_PrefabInstance: {fileID: 437392001116495271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f43039f8dfc8049a214dea4ad9c8c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8465746862611656461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8317500204399801002, guid: 987f5f97ce52b5f45ad43000a1f598af, type: 3}
+  m_PrefabInstance: {fileID: 437392001116495271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2444406020084723537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,7 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf588fcf114d20a4cb558e8986a3d9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversationMan: {fileID: 0}
   dialogueMan: {fileID: 4521096172819230744}
+  minigameMan: {fileID: 0}
 --- !u!4 &6137101269147897618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8414724414814363715, guid: df66010e56b5a614cba6f41c44c3b4f9, type: 3}
@@ -187,6 +267,10 @@ PrefabInstance:
       propertyPath: dialogueMan
       value: 
       objectReference: {fileID: 4521096172819230744}
+    - target: {fileID: 6294905513051120307, guid: d7adc48e1636f2846aebb5ac0d981738, type: 3}
+      propertyPath: minigameMan
+      value: 
+      objectReference: {fileID: 3939589032753502235}
     - target: {fileID: 8096615521765215282, guid: d7adc48e1636f2846aebb5ac0d981738, type: 3}
       propertyPath: m_Name
       value: ConversationManager

@@ -25,4 +25,6 @@ MonoBehaviour:
   - You picked choice 1! <link="JumpToLine"><style="Invis">9</link></style>
   - You picked choice 2! <link="JumpToLine"><style="Invis">9</link></style>
   - You picked choice 3!
+  - Time for a minigame!
+  - <link="Captcha"><style="Invis">3</link></style>
   - Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>

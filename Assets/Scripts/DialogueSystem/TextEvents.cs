@@ -8,7 +8,9 @@ using System;
 // this script identifies and executes events based on link tags found in text box
 public class TextEvents : MonoBehaviour
 {
+    [SerializeField] ConversationManager conversationMan;
     [SerializeField] DialogueManager dialogueMan;
+    [SerializeField] MinigameManager minigameMan;
     private void Awake()
     {
         TextEventInvoker.LinkFound += CheckEventType;
@@ -30,7 +32,16 @@ public class TextEvents : MonoBehaviour
             case "JumpToLine":
                 HandleJumpToLine(textEvent.GetLinkText());
                 break;
+            case "OpenDialogue":
+                dialogueMan.ToggleDialogueOpen(true);
+                dialogueMan.DisplayNextSentence();
+                break;
             case "CloseDialogue":
+                dialogueMan.ToggleDialogueOpen(false);
+                break;
+            case "Captcha":
+                int numSymbols = int.Parse(textEvent.GetLinkText());
+                conversationMan.StartMinigame(numSymbols);
                 break;
             default:
                 Debug.Log("default event triggered");
