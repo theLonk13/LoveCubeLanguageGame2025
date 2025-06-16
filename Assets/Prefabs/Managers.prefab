@@ -32,6 +32,7 @@ Transform:
   - {fileID: 3716365659226905576}
   - {fileID: 6137101269147897618}
   - {fileID: 8465746862611656461}
+  - {fileID: 6994380858843732966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &437392001116495271
@@ -271,6 +272,10 @@ PrefabInstance:
       propertyPath: minigameMan
       value: 
       objectReference: {fileID: 3939589032753502235}
+    - target: {fileID: 6294905513051120307, guid: d7adc48e1636f2846aebb5ac0d981738, type: 3}
+      propertyPath: letterboxMan
+      value: 
+      objectReference: {fileID: 1570626073610621394}
     - target: {fileID: 8096615521765215282, guid: d7adc48e1636f2846aebb5ac0d981738, type: 3}
       propertyPath: m_Name
       value: ConversationManager
@@ -296,3 +301,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8079aa16fb82bff4da79c64ee82bf9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4990250224549021200
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5749270547851111493}
+    m_Modifications:
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 386.86337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 198.79372
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0805835
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5846386756624368388, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+      propertyPath: m_Name
+      value: LetterboxManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+--- !u!114 &1570626073610621394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5803752561190754242, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+  m_PrefabInstance: {fileID: 4990250224549021200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615d26787fdff474b9f39a897a541e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6994380858843732966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2617126255469977078, guid: da487ef2b63157243b470ef7e5b2a4d0, type: 3}
+  m_PrefabInstance: {fileID: 4990250224549021200}
+  m_PrefabAsset: {fileID: 0}

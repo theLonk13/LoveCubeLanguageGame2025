@@ -37,7 +37,6 @@ public class LetterboxAnimator : MonoBehaviour
     [SerializeField] private float testDownStart = 50f;
     [SerializeField] private float testDownEnd = 25f;
     [SerializeField] private float testDownDuration = 1f;
-
     void Start()
     {
         // Set Default properties for top and bottom bars
@@ -62,7 +61,6 @@ public class LetterboxAnimator : MonoBehaviour
             bottomBarVisual.color = Color.black;
         }
 
-        //Testing
         AnimateTopBar(testUpStart, testUpEnd, testUpDuration);
         topBarVisual.color = testUpColor;
         AnimateBottomBar(testDownStart, testDownEnd, testDownDuration);
