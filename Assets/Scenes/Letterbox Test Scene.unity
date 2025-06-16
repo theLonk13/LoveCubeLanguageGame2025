@@ -123,6 +123,124 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &97537744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97537745}
+  - component: {fileID: 97537748}
+  - component: {fileID: 97537747}
+  - component: {fileID: 97537746}
+  m_Layer: 5
+  m_Name: TestBG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &97537745
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97537744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1607095422}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &97537746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97537744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777ac3d96bc92ad47a84caab42a37de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 97537744}
+  layer: 0
+  startPercent: 0
+  endPercent: 0
+  duration: 0
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loop: 1
+--- !u!114 &97537747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97537744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &97537748
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97537744}
+  m_CullTransparentMesh: 1
 --- !u!1 &99684974
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,18 +320,19 @@ MonoBehaviour:
   bottomBar: {fileID: 1075054403}
   topBarVisual: {fileID: 580530493}
   bottomBarVisual: {fileID: 1075054404}
+  RunTests: 0
+  runTest: 0
   testColorChange: 1
-  testUpColor: {r: 0, g: 0, b: 0, a: 1}
-  testDownColor: {r: 0, g: 0, b: 0, a: 1}
-  testUpStart: 0
-  testUpEnd: 25
-  testUpDuration: 1
-  testDownStart: 0
-  testDownEnd: 25
-  testDownDuration: 1
-  useTopMovementCurve: 1
-  useBottomMovementCurve: 1
-  topMovementCurve:
+  testTopColor: {r: 0, g: 0, b: 0, a: 1}
+  testBottomColor: {r: 0, g: 0, b: 0, a: 1}
+  testTopStart: 0
+  testTopEnd: 50
+  testTopDuration: 1
+  testBottomStart: 50
+  testBottomEnd: 25
+  testBottomDuration: 1
+  testMovementCurves: 1
+  testTopMoveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -226,19 +345,10 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.3033065
-      value: 0.6405317
-      inSlope: 1.0901215
-      outSlope: 1.0901215
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.7238333
-      value: 0.49764606
-      inSlope: 1.4916623
-      outSlope: 1.4916623
+      time: 0.2684152
+      value: 1.1828697
+      inSlope: 1.4904399
+      outSlope: 1.4904399
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -255,7 +365,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  bottomMovementCurve:
+  testBottomMoveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -268,19 +378,19 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.18326442
-      value: 0.4441341
-      inSlope: 3.4933965
-      outSlope: 3.4933965
+      time: 0.3356596
+      value: 0.6369728
+      inSlope: 1.4490827
+      outSlope: 1.4490827
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.64395165
-      value: 0.4905547
-      inSlope: 1.4999685
-      outSlope: 1.4999685
+      time: 0.6387537
+      value: 0.4409752
+      inSlope: 0.718118
+      outSlope: 0.718118
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -709,6 +819,7 @@ RectTransform:
   m_Children:
   - {fileID: 580530492}
   - {fileID: 1075054403}
+  - {fileID: 97537745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
