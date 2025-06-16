@@ -24,9 +24,9 @@ MonoBehaviour:
   - A third sentence with the same object as the first <style="KeyTextRed"><link="testObj1">sentence</style></link>.
   - Now <style="KeyTextRed"><link="testObj1">what</style></link> if we put them <style="KeyTextRed"><link="testObj2">together?</style></link>
   - Okay what if we made something trigger an<link="testEvent1"> event?</link>
-  - Lets try some choices <link="Choice"><style="Invis"><;choice1;6;choice2;7;choice3;8;></link></style>
-  - You picked choice 1! <link="JumpToLine"><style="Invis">9</link></style>
-  - You picked choice 2! <link="JumpToLine"><style="Invis">9</link></style>
+  - Lets try some choices <link="Choice"><style="Invis"><;choice1;8;choice2;9;choice3;10;></link></style>
+  - You picked choice 1! <link="JumpToLine"><style="Invis">11</link></style>
+  - You picked choice 2! <link="JumpToLine"><style="Invis">11</link></style>
   - You picked choice 3!
   - Time for a minigame!
   - <link="Captcha"><style="Invis">3</link></style>
