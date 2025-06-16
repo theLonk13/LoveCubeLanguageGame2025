@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &99684974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 99684975}
+  m_Layer: 0
+  m_Name: BackgroundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &99684975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99684974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 502.25342, y: 139.14955, z: -1.6689396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &512796607
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +202,7 @@ MonoBehaviour:
   bottomBar: {fileID: 1075054403}
   topBarVisual: {fileID: 580530493}
   bottomBarVisual: {fileID: 1075054404}
+  testColorChange: 1
   testUpColor: {r: 0, g: 0, b: 0, a: 1}
   testDownColor: {r: 0, g: 0, b: 0, a: 1}
   testUpStart: 0
@@ -179,6 +211,98 @@ MonoBehaviour:
   testDownStart: 0
   testDownEnd: 25
   testDownDuration: 1
+  useTopMovementCurve: 1
+  useBottomMovementCurve: 1
+  topMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3033065
+      value: 0.6405317
+      inSlope: 1.0901215
+      outSlope: 1.0901215
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7238333
+      value: 0.49764606
+      inSlope: 1.4916623
+      outSlope: 1.4916623
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bottomMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.18326442
+      value: 0.4441341
+      inSlope: 3.4933965
+      outSlope: 3.4933965
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.64395165
+      value: 0.4905547
+      inSlope: 1.4999685
+      outSlope: 1.4999685
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  testTopColorChange1: {r: 1, g: 0, b: 0, a: 1}
+  testTopColorChange2: {r: 0, g: 0.11670852, b: 1, a: 1}
+  testBottomColorChange1: {r: 0.3461274, g: 1, b: 0, a: 1}
+  testBottomColorChange2: {r: 0.9906118, g: 1, b: 0, a: 1}
+  testTopColorDuration: 5
+  testBottomColorDuration: 5
 --- !u!1 &580530491
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,3 +724,4 @@ SceneRoots:
   - {fileID: 512796608}
   - {fileID: 1607095422}
   - {fileID: 1577021529}
+  - {fileID: 99684975}

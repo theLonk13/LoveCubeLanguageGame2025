@@ -11,7 +11,6 @@ public class LetterboxAnimator : MonoBehaviour
     public Image topBarVisual;
     public Image bottomBarVisual;
 
-
     private Vector2 topStartPos;
     private Vector2 topEndPos;
     private float topDuration;
@@ -25,10 +24,26 @@ public class LetterboxAnimator : MonoBehaviour
     private bool isTopMoving = false;
     private bool isBottomMoving = false;
 
+    // Color Changing
+    private Color topColorStart;
+    private Color topColorEnd;
+    private float topColorDuration;
+    private float topColorTimeElapsed;
+    private bool isTopColorChanging = false;
+
+    private Color bottomColorStart;
+    private Color bottomColorEnd;
+    private float bottomColorDuration;
+    private float bottomColorTimeElapsed;
+    private bool isBottomColorChanging = false;
+
+
     // Debug
     // Start: Percentage of screen bar covers at first
     // End: Percentage of screen bar covers at end
     // Duration: Length of time of the animation
+    [SerializeField] private bool testColorChange = false;
+
     [SerializeField] private Color testUpColor = Color.black;
     [SerializeField] private Color testDownColor = Color.black;
     [SerializeField] private float testUpStart = 0f;
@@ -37,6 +52,20 @@ public class LetterboxAnimator : MonoBehaviour
     [SerializeField] private float testDownStart = 50f;
     [SerializeField] private float testDownEnd = 25f;
     [SerializeField] private float testDownDuration = 1f;
+
+    public bool useTopMovementCurve = true;
+    public bool useBottomMovementCurve = true;
+    public AnimationCurve topMovementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    public AnimationCurve bottomMovementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
+    [SerializeField] private Color testTopColorChange1 = Color.black;
+    [SerializeField] private Color testTopColorChange2 = Color.black;
+    [SerializeField] private Color testBottomColorChange1 = Color.black;
+    [SerializeField] private Color testBottomColorChange2 = Color.black;
+    [SerializeField] private float testTopColorDuration = 1f;
+    [SerializeField] private float testBottomColorDuration = 1f;
+
+
 
     void Start()
     {
@@ -63,10 +92,15 @@ public class LetterboxAnimator : MonoBehaviour
         }
 
         //Testing
-        AnimateTopBar(testUpStart, testUpEnd, testUpDuration);
-        topBarVisual.color = testUpColor;
+        AnimateTopBar(testUpStart, testUpEnd, testUpDuration, topMovementCurve);
+        setTopColor(testUpColor);
         AnimateBottomBar(testDownStart, testDownEnd, testDownDuration);
-        bottomBarVisual.color = testDownColor;
+        setBottomColor(testDownColor);
+        if(testColorChange)
+        {
+            animateTopColorChange(testTopColorChange1, testTopColorChange2, testTopColorDuration);
+            animateBottomColorChange(testBottomColorChange1, testBottomColorChange2, testBottomColorDuration);
+        }
     }
     void Update()
     {
@@ -74,8 +108,8 @@ public class LetterboxAnimator : MonoBehaviour
         {
             topTimeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(topTimeElapsed / topDuration);
-            Vector2 newPos = Vector2.Lerp(topStartPos, topEndPos, t);
-            topBar.anchoredPosition = newPos;
+            if(useTopMovementCurve) t = topMovementCurve.Evaluate(t);
+            topBar.anchoredPosition = Vector2.Lerp(topStartPos, topEndPos, t);
 
             if (t >= 1f) isTopMoving = false;
         }
@@ -84,14 +118,48 @@ public class LetterboxAnimator : MonoBehaviour
         {
             bottomTimeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(bottomTimeElapsed / bottomDuration);
-            Vector2 newPos = Vector2.Lerp(bottomStartPos, bottomEndPos, t);
-            bottomBar.anchoredPosition = newPos;
+            if (useBottomMovementCurve) t = topMovementCurve.Evaluate(t);
+            bottomBar.anchoredPosition = Vector2.Lerp(bottomStartPos, bottomEndPos, t);
 
             if (t >= 1f) isBottomMoving = false;
         }
+
+        if (isTopColorChanging)
+        {
+            topColorTimeElapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(topColorTimeElapsed / topColorDuration);
+            topBarVisual.color = Color.Lerp(topColorStart, topColorEnd, t);
+            if(t>= 1f) isTopColorChanging = false;
+        }
+
+        if (isBottomColorChanging)
+        {
+            bottomColorTimeElapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(bottomColorTimeElapsed / bottomColorDuration);
+            bottomBarVisual.color = Color.Lerp(bottomColorStart, bottomColorEnd, t);
+            if (t >= 1f) isBottomColorChanging = false;
+        }
     }
 
-    public void AnimateTopBar(float startPercent, float endPercent, float duration)
+    public void setTopBar(float percent)
+    {
+        float screenHeight = Screen.height;
+        float barHeight = screenHeight * 0.5f;
+        float y = screenHeight * (1f - (percent / 100f)) - barHeight;
+
+        topBar.anchoredPosition = new Vector2(0, y);
+    }
+
+    public void setBottomBar(float percent)
+    {
+        float screenHeight = Screen.height;
+        float barHeight = screenHeight * 0.5f;
+        float y = screenHeight * (percent / 100f);
+
+        bottomBar.anchoredPosition = new Vector2(0, y);
+    }
+
+    public void AnimateTopBar(float startPercent, float endPercent, float duration, AnimationCurve curve = null)
     {
         float screenHeight = Screen.height;
         float barHeight = screenHeight * 0.5f;
@@ -103,9 +171,12 @@ public class LetterboxAnimator : MonoBehaviour
         topDuration = duration;
         topTimeElapsed = 0f;
         isTopMoving = true;
+
+        if (curve != null) useTopMovementCurve = true;
+        topMovementCurve = curve;
     }
 
-    public void AnimateBottomBar(float startPercent, float endPercent, float duration)
+    public void AnimateBottomBar(float startPercent, float endPercent, float duration, AnimationCurve curve = null)
     {
         float screenHeight = Screen.height;
         float startY = screenHeight * (startPercent / 100f);
@@ -116,5 +187,46 @@ public class LetterboxAnimator : MonoBehaviour
         bottomDuration = duration;
         bottomTimeElapsed = 0f;
         isBottomMoving = true;
+
+        if (curve != null) useBottomMovementCurve = true;
+        bottomMovementCurve = curve;
+    }
+
+    public void setTopColor(Color color)
+    {
+        topBarVisual.color = color;
+    }
+
+    public void setBottomColor(Color color)
+    {
+        bottomBarVisual.color = color;
+    }
+
+    public void animateTopColorChange(Color color1, Color color2, float duration)
+    {
+        topColorStart = color1;
+        topColorEnd = color2;
+        topColorDuration = duration;
+        topColorTimeElapsed = 0f;
+        isTopColorChanging = true;
+    }
+
+    public void animateBottomColorChange(Color color1, Color color2, float duration)
+    {
+        bottomColorStart = color1;
+        bottomColorEnd = color2;
+        bottomColorDuration = duration;
+        bottomColorTimeElapsed = 0f;
+        isBottomColorChanging = true;
+    }
+
+    public void setZTopLayer(int layer)
+    {
+
+    }
+
+    public void setZBottomLayer(int layer)
+    {
+
     }
 }
