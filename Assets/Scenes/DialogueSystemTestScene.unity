@@ -918,6 +918,14 @@ PrefabInstance:
       propertyPath: bottomBarVisual
       value: 
       objectReference: {fileID: 1838296121}
+    - target: {fileID: 1570626073610621394, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: useTopMovementCurve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570626073610621394, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: useBottomMovementCurve
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2679912230329843990, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
       propertyPath: m_Name
       value: Managers

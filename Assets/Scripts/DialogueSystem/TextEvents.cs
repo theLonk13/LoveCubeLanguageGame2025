@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 // this script identifies and executes events based on link tags found in text box
 public class TextEvents : MonoBehaviour
@@ -22,9 +23,6 @@ public class TextEvents : MonoBehaviour
         {
             case "testEvent1":
                 Debug.Log("test1 event triggered");
-                break;
-            case "testEvent2":
-                Debug.Log("test2 event triggered");
                 break;
             case "Choice":
                 ParseAndSendChoiceData(textEvent.GetLinkText());
@@ -45,6 +43,9 @@ public class TextEvents : MonoBehaviour
                 break;
             case "Letterbox":
                 ParseAndSendLetterboxData(textEvent.GetLinkText());
+                break;
+            case "ChangeScript":
+                ParseAndChangeDialogueScript(textEvent.GetLinkText());
                 break;
             default:
                 Debug.Log("default event triggered");
@@ -142,5 +143,23 @@ public class TextEvents : MonoBehaviour
         }
 
         conversationMan.AnimateLetterbox(topStart, topEnd, topDuration, botStart, botEnd, botDuration, topColor, botColor);
+    }
+
+    // Find and change Dialogue objects for a new script
+    private void ParseAndChangeDialogueScript(string linkText)
+    {
+        //Search for assets by name
+        string[] assets = AssetDatabase.FindAssets(linkText + " t:DialogueTextScript", new[] {"Assets/DialogueSystem/DialogueScripts/"});
+        //Debug.LogFormat($"Found {assets.Length} DialogueTextScript using search term {linkText}");
+
+        //Convert GUIDS to asset path and load asset
+        string assetPath = AssetDatabase.GUIDToAssetPath(assets[0]);
+        DialogueTextScript newScript = AssetDatabase.LoadAssetAtPath<DialogueTextScript>(assetPath);
+        if(newScript == null)
+        {
+            //Debug.LogFormat($"newScript is null.");
+            return;
+        }
+        dialogueMan.ChangeScripts(newScript);
     }
 }

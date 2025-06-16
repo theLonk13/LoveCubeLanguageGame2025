@@ -12,15 +12,22 @@ public class ChoiceScript : MonoBehaviour
     private int choiceLineIndex; // backend line index for dialogue manager to find the correct dialogue branch
     [SerializeField] private int choiceIndex; // number that signifies what choice number this is in the dialogue
 
+    [SerializeField] ChoiceUIScript choiceUIScript;
+
     private void Awake()
     {
         dialogueMan = GameObject.FindFirstObjectByType<DialogueManager>();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     private void Update()
     {
-        if(textbox.text == "") { this.gameObject.SetActive(false); }
-        else { this.gameObject.SetActive(true); }
+        //if(textbox.text == "") { this.gameObject.SetActive(false); }
+        //else { this.gameObject.SetActive(true); }
     }
 
     public void SelectChoice()
@@ -29,5 +36,16 @@ public class ChoiceScript : MonoBehaviour
         {
             dialogueMan.SelectChoice(choiceIndex);
         }
+    }
+
+    // Unused
+    private void UpdateChoiceVisible(UnityEngine.Object obj)
+    {
+        if(obj != textbox)
+        {
+            return;
+        }
+
+
     }
 }
