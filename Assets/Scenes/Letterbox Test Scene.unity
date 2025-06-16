@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &97537745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777ac3d96bc92ad47a84caab42a37de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: {fileID: 97537744}
   layer: 0
   startPercent: 0
   endPercent: 0
@@ -320,7 +319,7 @@ MonoBehaviour:
   bottomBar: {fileID: 1075054403}
   topBarVisual: {fileID: 580530493}
   bottomBarVisual: {fileID: 1075054404}
-  RunTests: 0
+  RunTests: 1
   runTest: 0
   testColorChange: 1
   testTopColor: {r: 0, g: 0, b: 0, a: 1}

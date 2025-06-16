@@ -57,13 +57,13 @@ public class ConversationManager : MonoBehaviour
 
     public void AnimateLetterbox(float topStart, float topEnd, float topDuration, float botStart, float botEnd, float botDuration)
     {
-        letterboxMan.AnimateTopBar(topStart, topEnd, topDuration);
-        letterboxMan.AnimateBottomBar(botStart, botEnd, botDuration);
+        letterboxMan.animateTopBar(topStart, topEnd, topDuration);
+        letterboxMan.animateBottomBar(botStart, botEnd, botDuration);
     }
 
     public void AnimateLetterbox(float topStart, float topEnd, float topDuration, float botStart, float botEnd, float botDuration, Color topColor, Color botColor)
     {
-        letterboxMan.AnimateTopBar(topStart, topEnd, topDuration);
-        letterboxMan.AnimateBottomBar(botStart, botEnd, botDuration);
+        letterboxMan.animateTopBar(topStart, topEnd, topDuration);
+        letterboxMan.animateBottomBar(botStart, botEnd, botDuration);
     }
 }
