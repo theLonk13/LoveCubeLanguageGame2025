@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackgroundManager : MonoBehaviour
 {
+    public int Scene_ID;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class BackgroundManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void setMovement(BGElement image, float startPercent, float endPercent, float duration, bool loop = false, bool tiled = false)
+    {
+
     }
 }

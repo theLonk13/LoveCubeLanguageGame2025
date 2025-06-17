@@ -285,11 +285,11 @@ public class LetterboxAnimator : MonoBehaviour
 
     public void setZTopLayer(int layer)
     {
-
+        topBar.transform.SetSiblingIndex(layer);
     }
 
     public void setZBottomLayer(int layer)
     {
-
+        bottomBar.transform.SetSiblingIndex(layer);
     }
 }
