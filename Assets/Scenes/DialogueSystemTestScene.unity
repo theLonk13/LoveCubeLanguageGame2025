@@ -476,6 +476,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3600007618731720035, guid: 25246123510c723489af4025da6571b7, type: 3}
   m_PrefabInstance: {fileID: 1447358779}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1576300210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9049623250303326982, guid: a988a26193549d846a68e37f70f22221, type: 3}
+  m_PrefabInstance: {fileID: 1612742434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598467138
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +618,10 @@ PrefabInstance:
     - target: {fileID: 2014179140875403046, guid: a988a26193549d846a68e37f70f22221, type: 3}
       propertyPath: m_Name
       value: MinigameParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525776943514660125, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5176471
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -938,6 +947,10 @@ PrefabInstance:
       propertyPath: conversationMan
       value: 
       objectReference: {fileID: 5788017597380955444}
+    - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: staticFilter
+      value: 
+      objectReference: {fileID: 1576300210}
     - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
       propertyPath: symbolClickableParent
       value: 

@@ -23,7 +23,7 @@ MonoBehaviour:
   - '#You picked choice 2! <link="JumpToLine"><style="Invis">7</link></style>'
   - '#You picked choice 3!'
   - Minigame#Time for a minigame!
-  - '#<link="Captcha"><style="Invis">3</link></style>'
+  - '#<link="Captcha"><style="Invis"><;3;0;></link></style>'
   - '#'
   - Tester#Searching for dialogue text script <link="ChangeScript"><style="Invis">testScript2</link></style>
   - Tester#Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>

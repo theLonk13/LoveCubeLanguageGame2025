@@ -38,8 +38,7 @@ public class TextEvents : MonoBehaviour
                 dialogueMan.ToggleDialogueOpen(false);
                 break;
             case "Captcha":
-                int numSymbols = int.Parse(textEvent.GetLinkText());
-                conversationMan.StartMinigame(numSymbols);
+                ParseAndSendCaptchaData(textEvent.GetLinkText());
                 break;
             case "Letterbox":
                 ParseAndSendLetterboxData(textEvent.GetLinkText());
@@ -54,6 +53,7 @@ public class TextEvents : MonoBehaviour
     }
 
     // Choices are formatted <;[choice 1 text]; [choice 1 line]; [choice 2 text]; [choice 2 line]; [choice 3 text]; [choice 3 line];>  *********SUBJECT TO CHANGE**********
+    // texts are strings; line #s are ints
     // Remember to put the closing semi colon
     private void ParseAndSendChoiceData(string linkText)
     {
@@ -93,9 +93,26 @@ public class TextEvents : MonoBehaviour
         dialogueMan.JumpToLine(lineJump);
     }
 
+    // Parse and send captcha minigame data
+    // Captcha data should be formatted <;[number of symbols required];[modifier];[modifier param] (optional - depends on the modifier);[repeat modifier + modifier param until done];>
+    // # of symbols is int; modifier IDs are int; modifier params are floats
+    private void ParseAndSendCaptchaData(string linkText)
+    {
+        string[] splitStrings = linkText.Split(';');
+        int numSymbols = int.Parse(splitStrings[1]);
+        
+        string[] modifierData = new string[splitStrings.Length - 3];
+        for (int i = 2; i < splitStrings.Length - 1; i++)
+        {
+            modifierData[i - 2] = splitStrings[i];
+            //Debug.LogFormat($"Adding modifier param element: {modifierData[i - 2]}");
+        }
+        conversationMan.StartMinigame(numSymbols, modifierData);
+    }
 
     // Letterbox data should be formatted <;[topStart];[topEnd];[topDuration];[botStart];[botEnd];[botDuration];[topColor];[botColor];>
     // Colors are in the format r:g:b
+    // All values are floats
     // Use <size=0%> tag to make the letterbox data invisible mid sentence
     private void ParseAndSendLetterboxData(string linkText)
     {
