@@ -68,4 +68,9 @@ public class ConversationManager : MonoBehaviour
         letterboxMan.AnimateTopBar(topStart, topEnd, topDuration);
         letterboxMan.AnimateBottomBar(botStart, botEnd, botDuration);
     }
+
+    public void JumpToLine(int lineNumber)
+    {
+        dialogueMan.JumpToLine(lineNumber);
+    }
 }

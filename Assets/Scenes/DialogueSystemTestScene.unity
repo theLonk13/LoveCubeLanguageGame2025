@@ -615,13 +615,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1564690596548177183, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564690596548177183, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2014179140875403046, guid: a988a26193549d846a68e37f70f22221, type: 3}
       propertyPath: m_Name
       value: MinigameParent
       objectReference: {fileID: 0}
-    - target: {fileID: 8525776943514660125, guid: a988a26193549d846a68e37f70f22221, type: 3}
-      propertyPath: m_Color.a
-      value: 0.5176471
+    - target: {fileID: 4740209192959560346, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -636,6 +644,16 @@ RectTransform:
 --- !u!95 &1612742436 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8339923376250373441, guid: a988a26193549d846a68e37f70f22221, type: 3}
+  m_PrefabInstance: {fileID: 1612742434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1612742437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4740209192959560346, guid: a988a26193549d846a68e37f70f22221, type: 3}
+  m_PrefabInstance: {fileID: 1612742434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644539474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5297342329345707284, guid: a988a26193549d846a68e37f70f22221, type: 3}
   m_PrefabInstance: {fileID: 1612742434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1682326334 stripped
@@ -948,9 +966,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5788017597380955444}
     - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: timerParent
+      value: 
+      objectReference: {fileID: 1644539474}
+    - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
       propertyPath: staticFilter
       value: 
       objectReference: {fileID: 1576300210}
+    - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: maxNumObstacles
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: obstaclesParent
+      value: 
+      objectReference: {fileID: 1612742437}
     - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
       propertyPath: symbolClickableParent
       value: 

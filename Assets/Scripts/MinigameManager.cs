@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -43,9 +44,19 @@ public class MinigameManager : MonoBehaviour
 
     // Modifier objects
     [SerializeField] private GameObject staticFilter;
+    [SerializeField] private GameObject timerParent;
+    private Slider timerSlider;
+    private IEnumerator timerEnumerator;
+    [SerializeField] private GameObject obstaclesParent;
+    private IEnumerator obstacleGenerator;
+    [SerializeField] private GameObject obstaclePrefab;
+    [Tooltip("Maximum number of obstacles on the screen at a time")]
+    [SerializeField] private int maxNumObstacles;
+
     private void Awake()
     {
         SetupPossibleSymbols();
+        if(timerParent != null ) timerSlider = timerParent.GetComponent<Slider>();
     }
 
     private void SetupPossibleSymbols()
@@ -107,14 +118,17 @@ public class MinigameManager : MonoBehaviour
                         Debug.Log("Static filter modifier activated");
                         if(staticFilter != null) staticFilter.SetActive(true);
                         break;
-                    case 1:
+                    case 1: // Dialogue for passing the timer should be immediately after the captcha sentence. Fail leads to a jump somewhere else
                         float timer = float.Parse(modifierParams[++i]);
                         int jumpFail = int.Parse(modifierParams[++i]);
-                        int jumpSuccess = int.Parse(modifierParams[++i]);
-                        Debug.LogFormat($"Timer modifier activated with {timer} seconds. Jump to {jumpFail} on fail. Jump to {jumpSuccess} on success");
+                        Debug.LogFormat($"Timer modifier activated with {timer} seconds. Jump to {jumpFail} on fail.");
+                        if(timerParent != null) timerParent.SetActive(true);
+                        RunTimerHelper(timer, jumpFail);
                         break;
                     case 2:
                         Debug.Log("Obstacle modifier activated");
+                        if(obstaclesParent != null) obstaclesParent.SetActive(true);
+                        StartObstacleGenerator();
                         break;
                     default:
                         Debug.LogFormat($"No modifier of ID {modifierID} found.");
@@ -145,6 +159,55 @@ public class MinigameManager : MonoBehaviour
         foreach(Transform transform in symbolClickableTransforms)
         {
             //Debug.LogFormat($"{transform.localPosition}");
+        }
+    }
+
+    private void RunTimerHelper(float timerLength, int jumpToOnFail)
+    {
+        if(timerEnumerator != null)
+        {
+            StopCoroutine(timerEnumerator);
+        }
+        timerEnumerator = RunTimer(timerLength, jumpToOnFail);
+        StartCoroutine(timerEnumerator);
+    }
+    IEnumerator RunTimer(float timerLength, int jumpToOnFail)
+    {
+        float currTime = 0f;
+        while (currTime < timerLength)
+        {
+            currTime += Time.deltaTime;
+            timerSlider.value = (timerLength - currTime)/timerLength;
+            yield return null;
+        }
+        conversationMan.JumpToLine(jumpToOnFail);
+        timerEnumerator = null;
+    }
+
+    private void StartObstacleGenerator()
+    {
+        if (obstacleGenerator != null)
+        {
+            StopCoroutine(obstacleGenerator);
+        }
+        obstacleGenerator = ObstacleGenerator();
+        StartCoroutine(obstacleGenerator);
+    }
+
+    IEnumerator ObstacleGenerator()
+    {
+        int numObstacles = 0;
+        while (true)
+        {
+            numObstacles = obstaclesParent.transform.childCount;
+            if(numObstacles < maxNumObstacles)
+            {
+                if (obstaclePrefab != null)
+                {
+                    GameObject.Instantiate(obstaclePrefab, obstaclesParent.transform);
+                }
+            }
+            yield return new WaitForSeconds(.2f);
         }
     }
 
@@ -203,5 +266,25 @@ public class MinigameManager : MonoBehaviour
         }
 
         if(staticFilter != null) staticFilter.SetActive(false);
+        if(timerParent != null) timerParent.SetActive(false);
+        if (timerEnumerator != null)
+        {
+            StopCoroutine(timerEnumerator);
+            timerEnumerator = null;
+        }
+        if(obstacleGenerator != null)
+        {
+            StopCoroutine(obstacleGenerator);
+            obstacleGenerator = null;
+        }
+        if (obstaclesParent != null)
+        {
+            int numObstacles = obstaclesParent.transform.childCount;
+            for (int i = 0; i < numObstacles; i++)
+            {
+                Destroy(obstaclesParent.transform.GetChild(i).gameObject);
+            }
+            obstaclesParent.SetActive(false);
+        }
     }
 }
