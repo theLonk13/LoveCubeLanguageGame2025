@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -41,6 +42,10 @@ public class MinigameManager : MonoBehaviour
 
     // Animator for Minigame window
     [SerializeField] private Animator minigameWindowAnimator;
+
+    // Context window
+    [SerializeField] private TMP_Text contextTextbox;
+    [SerializeField] private Animator contextAnimator;
 
     // Modifier objects
     [SerializeField] private GameObject staticFilter;
@@ -106,8 +111,11 @@ public class MinigameManager : MonoBehaviour
         // Setup Top Screen
         SetupTopScreen();
 
+        // Set context text
+        if(contextTextbox != null) { contextTextbox.text = modifierParams[0]; }
+
         // Set up modifiers
-        for (int i = 0; i < modifierParams.Length; i++)
+        for (int i = 1; i < modifierParams.Length; i++)
         {
             try
             {
@@ -249,6 +257,7 @@ public class MinigameManager : MonoBehaviour
     private void ToggleMinigameWindow(bool isOpen)
     {
         minigameWindowAnimator.SetBool("Open", isOpen);
+        //contextAnimator.SetTrigger("ToggleContextWindow");
     }
 
     private void CleanUpMinigameWindow()

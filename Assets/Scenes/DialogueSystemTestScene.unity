@@ -627,7 +627,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameParent
       objectReference: {fileID: 0}
+    - target: {fileID: 4282798550031277469, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4740209192959560346, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877432075276369758, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 358
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877432075276369758, guid: a988a26193549d846a68e37f70f22221, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297342329345707284, guid: a988a26193549d846a68e37f70f22221, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -710,11 +726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -731,7 +747,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -829,6 +845,17 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5198390644228210777, guid: 4665ab6178f95e74e8c8bda828a6395a, type: 3}
   m_PrefabInstance: {fileID: 4490449860646696504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2042782964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3601446867501534230, guid: a988a26193549d846a68e37f70f22221, type: 3}
+  m_PrefabInstance: {fileID: 1612742434}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -973,6 +1000,10 @@ PrefabInstance:
       propertyPath: staticFilter
       value: 
       objectReference: {fileID: 1576300210}
+    - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
+      propertyPath: contextTextbox
+      value: 
+      objectReference: {fileID: 2042782964}
     - target: {fileID: 3939589032753502235, guid: d20d1be03dc0d9844a19dc06f5fff499, type: 3}
       propertyPath: maxNumObstacles
       value: 12

@@ -23,11 +23,11 @@ MonoBehaviour:
   - '#You picked choice 2! <link="JumpToLine"><style="Invis">7</link></style>'
   - '#You picked choice 3!'
   - Minigame#Time for a minigame!
-  - '#<link="Captcha"><style="Invis"><;3;0;></link></style>'
+  - '#<link="Captcha"><style="Invis"><;3;This has a static modifier;0;></link></style>'
   - '#'
-  - '#<link="Captcha"><style="Invis"><;3;1;10.0;12;></link></style>'
+  - '#<link="Captcha"><style="Invis"><;3;This has a timer;1;10.0;12;></link></style>'
   - Captcha#Timer passed<link="JumpToLine"><style="Invis">13</link></style>
   - Captcha#Timer failed
-  - '#<link="Captcha"><style="Invis"><;3;2;></link></style>'
+  - '#<link="Captcha"><style="Invis"><;3;This has obstacles;2;></link></style>'
   - Tester#Searching for dialogue text script <link="ChangeScript"><style="Invis">testScript2</link></style>
   - Tester#Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>
