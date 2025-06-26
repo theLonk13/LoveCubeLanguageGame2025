@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class BGElement : MonoBehaviour
 {
     public int layer;
 
-    [SerializeField] private float startPercent = 0f;
-    [SerializeField] private float endPercent = 100f;
-    [SerializeField] private float duration = 1f;
-    [SerializeField] private AnimationCurve movementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    [SerializeField] private bool loop = true;
-    [SerializeField] private bool tiled = false; // Duplicates image to the left and right for backgrounds
-    [SerializeField] private bool useCurve = false;
+    [SerializeField] public float startPercent = 0f;
+    [SerializeField] public float endPercent = 100f;
+    [SerializeField] public float duration = 1f;
+    [SerializeField] public AnimationCurve movementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] public bool loop = true;
+    [SerializeField] public bool tiled = false; // Duplicates image to the left and right for backgrounds
+    [SerializeField] public bool useCurve = false;
+    [SerializeField] public bool isBackground = false;
+    public int layerIndex = 0;
 
     private RectTransform rectTransform;
     private Vector2 originalPos;
@@ -32,6 +35,10 @@ public class BGElement : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         originalPos = rectTransform.anchoredPosition;
+        if (isBackground)
+        {
+            resize(rectTransform);
+        }
 
         startVal = screenSize * (startPercent / 100f);
         endVal = screenSize * (endPercent / 100f);
@@ -39,6 +46,7 @@ public class BGElement : MonoBehaviour
         endPos = new Vector2(endVal, 0);
 
         width = rectTransform.rect.width;
+        setLayer(layerIndex);
         if (tiled)
         {
             createLoopImages();
@@ -84,5 +92,18 @@ public class BGElement : MonoBehaviour
 
         left.transform.SetSiblingIndex(transform.GetSiblingIndex());
         right.transform.SetSiblingIndex(transform.GetSiblingIndex());
+    }
+
+    private void resize(RectTransform rectTransform)
+    {
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
+    }
+
+    public void setLayer(int index)
+    {
+        rectTransform.transform.SetSiblingIndex(index);
     }
 }

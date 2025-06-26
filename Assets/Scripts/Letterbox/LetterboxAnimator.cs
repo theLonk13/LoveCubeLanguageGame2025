@@ -30,7 +30,7 @@ public class LetterboxAnimator : MonoBehaviour
     private AnimationCurve topMovementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     private AnimationCurve bottomMovementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    // Color Changing Variables
+    // Visual Variables
     private Color topColorStart;
     private Color topColorEnd;
     private float topColorDuration;
@@ -42,6 +42,9 @@ public class LetterboxAnimator : MonoBehaviour
     private float bottomColorDuration;
     private float bottomColorTimeElapsed;
     private bool isBottomColorChanging = false;
+
+    public int zTopLayer = 0;
+    public int zBottomLayer = 0;
 
 
     // Debug
@@ -95,6 +98,7 @@ public class LetterboxAnimator : MonoBehaviour
             topBar.sizeDelta = new Vector2(0, barHeight);
             topBar.anchoredPosition = new Vector2(0, 0);
             topBarVisual.color = Color.black;
+            setZTopLayer(zTopLayer);
         }
         if (bottomBar != null)
         {
@@ -104,6 +108,7 @@ public class LetterboxAnimator : MonoBehaviour
             bottomBar.sizeDelta = new Vector2(0, barHeight);
             bottomBar.anchoredPosition = new Vector2(0, 0);
             bottomBarVisual.color = Color.black;
+            setZBottomLayer(zBottomLayer);
         }
 
         //Testing
