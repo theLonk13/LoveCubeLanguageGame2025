@@ -13,11 +13,12 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private ConversationManager conversationMan;
 
     // Tracks what are the taret symbols for the player
-    private Color[] requiredSymbols;
+    private Sprite[] requiredSymbols;
     private int[] requiredSymbolsIDs;
 
     // Temporary array for the possible symbols in the minigame, probably will change to sprites or a scriptable object later
-    [SerializeField] private List<Color> possibleSymbols = new List<Color>();
+    [SerializeField] private List<Sprite> possibleSymbols = new List<Sprite>();
+    [SerializeField] private SymbolList symbolList;
 
     // Toggle allowing repeat symbols
     [SerializeField] private bool allowRepeatSymbols;
@@ -66,13 +67,7 @@ public class MinigameManager : MonoBehaviour
 
     private void SetupPossibleSymbols()
     {
-        possibleSymbols.Clear();
-        possibleSymbols.Add(Color.white);
-        possibleSymbols.Add(Color.black);
-        possibleSymbols.Add(Color.blue);
-        possibleSymbols.Add(Color.red);
-        possibleSymbols.Add(Color.green);
-        possibleSymbols.Add(Color.yellow);
+        //possibleSymbols.Clear();
     }
 
     /*
@@ -82,25 +77,40 @@ public class MinigameManager : MonoBehaviour
      * 1 - timer; additional params following ID : [timer length (seconds in float)];[line jump # on fail];[line jump # on success]
      * 2 - obstacles
      */
-    public void SetupMinigame(int numSymbols, string[] modifierParams)
+    public void SetupMinigame(string reqSymbols, int botSymbolSet, int topSymbolSet, string[] modifierParams)
     {
-        // Select symbols at random
-        requiredSymbols = new Color[numSymbols];
-        requiredSymbolsIDs = new int[numSymbols];
-        List<Color> tempPossibleSymbols = new List<Color>(possibleSymbols);
-        for(int index = 0; index < requiredSymbols.Length; index++)
+        int numSymbols = 0;
+        numSymbols = ParseRequiredSymbols(reqSymbols);
+        requiredSymbols = new Sprite[numSymbols];
+
+        // Select symbols based on IDs if given
+        possibleSymbols = new List<Sprite>(symbolList.GetSymbolSet(botSymbolSet));
+
+        if (requiredSymbolsIDs[0] != -1)
         {
-            int thisSymbol = UnityEngine.Random.Range(0, tempPossibleSymbols.Count);
-            requiredSymbols[index] = tempPossibleSymbols[thisSymbol];
-            requiredSymbolsIDs[index] = possibleSymbols.IndexOf(requiredSymbols[index]);
-            if(!allowRepeatSymbols)
+            for(int i = 0; i < requiredSymbolsIDs.Length; i++)
             {
-                tempPossibleSymbols.RemoveAt(thisSymbol);
+                requiredSymbols[i] = possibleSymbols[requiredSymbolsIDs[i]];
             }
         }
+        else
+        {
+            List<Sprite> tempPossibleSymbols = new List<Sprite>(symbolList.GetSymbolSet(botSymbolSet));
+            for (int index = 0; index < requiredSymbols.Length; index++)
+            {
+                int thisSymbol = UnityEngine.Random.Range(0, tempPossibleSymbols.Count);
+                requiredSymbols[index] = tempPossibleSymbols[thisSymbol];
+                requiredSymbolsIDs[index] = possibleSymbols.IndexOf(requiredSymbols[index]);
+                if (!allowRepeatSymbols)
+                {
+                    tempPossibleSymbols.RemoveAt(thisSymbol);
+                }
+            }
+        }
+        
 
         // Display on lower screen
-        foreach(Color symbol in requiredSymbols)
+        foreach(Sprite symbol in requiredSymbols)
         {
             GameObject newSymbolFrame = GameObject.Instantiate(symbolFramePrefab, symbolFramesParentObj.transform);
             SymbolFrameScript newSymbolFrameScript = newSymbolFrame.GetComponent<SymbolFrameScript>();
@@ -109,7 +119,7 @@ public class MinigameManager : MonoBehaviour
         currSymbol = 0;
 
         // Setup Top Screen
-        SetupTopScreen();
+        SetupTopScreen(topSymbolSet);
 
         // Set context text
         if(contextTextbox != null) { contextTextbox.text = modifierParams[0]; }
@@ -151,11 +161,36 @@ public class MinigameManager : MonoBehaviour
         ToggleMinigameWindow(true);
     }
 
-    private void SetupTopScreen()
+    private int ParseRequiredSymbols(string reqSymbolString)
     {
+        string[] splitString = reqSymbolString.Split(':');
+        int numSymbols = int.Parse(splitString[0]);
+        requiredSymbolsIDs = new int[numSymbols];
+
+        if (splitString.Length > 1)
+        {
+            for (int i = 1; i < splitString.Length; i++)
+            {
+                requiredSymbolsIDs[i-1] = int.Parse(splitString[i]);
+            }
+        }
+        else
+        {
+            for(int i = 0; i < requiredSymbolsIDs.Length; i++)
+            {
+                requiredSymbolsIDs[i] = -1;
+            }
+        }
+
+        return numSymbols;
+    }
+
+    private void SetupTopScreen(int topSymbolSet)
+    {
+        possibleSymbols = new List<Sprite>(symbolList.GetSymbolSet(topSymbolSet));
         symbolClickableTransforms = new Transform[possibleSymbols.Count];
         int index = 0;
-        foreach(Color symbol in possibleSymbols)
+        foreach(Sprite symbol in possibleSymbols)
         {
             GameObject newSymbolClickable = GameObject.Instantiate(symbolClickablePrefab, symbolClickableParent.transform);
             SymbolClickableScript newSymbolClickableScript = newSymbolClickable.GetComponent<SymbolClickableScript>();

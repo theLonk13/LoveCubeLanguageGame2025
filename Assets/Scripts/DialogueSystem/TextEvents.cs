@@ -99,15 +99,17 @@ public class TextEvents : MonoBehaviour
     private void ParseAndSendCaptchaData(string linkText)
     {
         string[] splitStrings = linkText.Split(';');
-        int numSymbols = int.Parse(splitStrings[1]);
+        string reqSymbols = splitStrings[1];
+        int botSymbolSet = int.Parse(splitStrings[2]);
+        int topSymbolSet = int.Parse(splitStrings[3]);
         
-        string[] modifierData = new string[splitStrings.Length - 3];
-        for (int i = 2; i < splitStrings.Length - 1; i++)
+        string[] modifierData = new string[splitStrings.Length - 5];
+        for (int i = 4; i < splitStrings.Length - 1; i++)
         {
-            modifierData[i - 2] = splitStrings[i];
+            modifierData[i - 4] = splitStrings[i];
             //Debug.LogFormat($"Adding modifier param element: {modifierData[i - 2]}");
         }
-        conversationMan.StartMinigame(numSymbols, modifierData);
+        conversationMan.StartMinigame(reqSymbols, botSymbolSet, topSymbolSet, modifierData);
     }
 
     // Letterbox data should be formatted <;[topStart];[topEnd];[topDuration];[botStart];[botEnd];[botDuration];[topColor];[botColor];>

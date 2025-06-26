@@ -18,7 +18,9 @@ public class ConversationManager : MonoBehaviour
 
     private bool activateMinigameFlag = false; // tracks whether the minigame should be open and if it already has been opened
     private string[] captchaParams = { "" };
-    private int captchaNumSymbols = -1;
+    private string captchaRequiredSymbols = "";
+    private int botSymbolSet = -1;
+    private int topSymbolSet = -1;
 
     private void Update()
     {
@@ -37,16 +39,18 @@ public class ConversationManager : MonoBehaviour
         showChoicesUpdated = false;
     }
 
-    public void StartMinigame(int numSymbols, string[] modifierData)
+    public void StartMinigame(string reqSymbols, int botSymbolSet, int topSymbolSet, string[] modifierData)
     {
-        captchaNumSymbols = numSymbols;
+        captchaRequiredSymbols = reqSymbols;
         captchaParams = modifierData;
+        this.botSymbolSet = botSymbolSet;
+        this.topSymbolSet = topSymbolSet;
         activateMinigameFlag = true;
     }
 
     private void StartMinigameHelper()
     {
-        minigameMan.SetupMinigame(captchaNumSymbols, captchaParams);
+        minigameMan.SetupMinigame(captchaRequiredSymbols, botSymbolSet, topSymbolSet, captchaParams);
         dialogueMan.ToggleDialogueOpen(false);
         activateMinigameFlag = false;
     }

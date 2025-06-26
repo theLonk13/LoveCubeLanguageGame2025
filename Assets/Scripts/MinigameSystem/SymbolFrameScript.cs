@@ -13,4 +13,10 @@ public class SymbolFrameScript : MonoBehaviour
         symbolID = ID;
         symbolFrameImage.color = color;
     }
+
+    public void SetupSymbolFrame(int ID, Sprite sprite)
+    {
+        symbolID = ID;
+        symbolFrameImage.sprite = sprite;
+    }
 }

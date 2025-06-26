@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conversationMan: {fileID: 0}
   possibleSymbols: []
+  symbolList: {fileID: 11400000, guid: 0b0da5bb3258fec48a02d35d66017c4f, type: 2}
   allowRepeatSymbols: 0
   symbolFramePrefab: {fileID: 2012771679971739613, guid: 3d97b675ee2eeac4d9a4e18229d4cac7, type: 3}
   symbolFramesParentObj: {fileID: 0}
@@ -53,6 +54,8 @@ MonoBehaviour:
   symbolClickableParent: {fileID: 0}
   minSymbolDistance: 40
   minigameWindowAnimator: {fileID: 0}
+  contextTextbox: {fileID: 0}
+  contextAnimator: {fileID: 0}
   staticFilter: {fileID: 0}
   timerParent: {fileID: 0}
   obstaclesParent: {fileID: 0}
