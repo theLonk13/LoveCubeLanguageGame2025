@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BGElement : MonoBehaviour
 {
-    public int layer;
+    public float startPercent = 0f;
+    public float endPercent = 100f;
+    public float duration = 1f;
+    public AnimationCurve movementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    public bool loop = true;
 
-    [SerializeField] public float startPercent = 0f;
-    [SerializeField] public float endPercent = 100f;
-    [SerializeField] public float duration = 1f;
-    [SerializeField] public AnimationCurve movementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    [SerializeField] public bool loop = true;
-    [SerializeField] public bool tiled = false; // Duplicates image to the left and right for backgrounds
-    [SerializeField] public bool useCurve = false;
-    [SerializeField] public bool isBackground = false;
+    public bool tiled = false; // Duplicates image to the left and right for backgrounds
+    public bool useCurve = false;
+    public bool isBackground = false;
     public int layerIndex = 0;
+    public bool hasShadow = false;
+    public Color shadowColor = Color.black;
+    public Vector2 shadowOffset = new Vector2(1, 1);
 
     private RectTransform rectTransform;
     private Vector2 originalPos;
@@ -28,11 +31,17 @@ public class BGElement : MonoBehaviour
     private RectTransform leftRect;
     private RectTransform rightRect;
     private float width;
+    GameObject shadow;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (hasShadow)
+        {
+            addShadow(shadowColor, shadowOffset);
+        }
+
         rectTransform = GetComponent<RectTransform>();
         originalPos = rectTransform.anchoredPosition;
         if (isBackground)
@@ -74,6 +83,11 @@ public class BGElement : MonoBehaviour
             rectTransform.anchoredPosition = originalPos;
         }
 
+        if(hasShadow)
+        {
+            shadow.transform.localPosition = transform.localPosition;
+        }
+
     }
 
     private void createLoopImages()
@@ -105,5 +119,19 @@ public class BGElement : MonoBehaviour
     public void setLayer(int index)
     {
         rectTransform.transform.SetSiblingIndex(index);
+    }
+
+    public void addShadow(Color color, Vector3 offset)
+    {
+        shadow = Instantiate(gameObject, transform);
+        shadow.transform.SetParent(null);
+        Destroy(shadow.GetComponent<BGElement>());
+        if (shadow.GetComponent<Image>() == null) return; // Image Empty Error
+        Image shadowImage = shadow.GetComponent<Image>();
+        shadowImage.color = color;
+
+        shadow.transform.position = transform.position + offset;
+        shadow.transform.SetParent(transform.parent);
+        transform.SetParent(shadow.transform);
     }
 }
