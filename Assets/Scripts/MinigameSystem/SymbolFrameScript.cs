@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SymbolFrameScript : MonoBehaviour
 {
     [SerializeField] private Image symbolFrameImage;
+    [SerializeField] private Image symbolFrameHighlight;
     private int symbolID = -1;
 
     public void SetupSymbolFrame(int ID, Color color)
@@ -18,5 +19,10 @@ public class SymbolFrameScript : MonoBehaviour
     {
         symbolID = ID;
         symbolFrameImage.sprite = sprite;
+    }
+
+    public void ToggleHighlight(bool highlight)
+    {
+        symbolFrameHighlight.gameObject.SetActive(highlight);
     }
 }

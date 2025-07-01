@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     // Textboxes for dialogue
     [SerializeField] TextMeshProUGUI nameTextBox;
     [SerializeField] TextMeshProUGUI dialogueTextBox;
+    [SerializeField] TextMeshProUGUI languageTextBox;
 
     // ChoicesUI
     [SerializeField] GameObject choicesUI;
@@ -30,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     bool typing = false;
     // Strings to track name and sentence currently spoken
     private string currSpeakerName = "";
+    private string currLanguageSpoken = "";
     private string currSentenceSpoken = "";
 
     // Speed at which characters are displayed
@@ -188,5 +190,10 @@ public class DialogueManager : MonoBehaviour
     public void ChangeScripts(DialogueTextScript newScript)
     {
         StartDialogue(newScript);
+    }
+
+    public void ChangeLanguage(string language)
+    {
+        languageTextBox.text = $"SPEAKING {language.ToUpper()}";
     }
 }

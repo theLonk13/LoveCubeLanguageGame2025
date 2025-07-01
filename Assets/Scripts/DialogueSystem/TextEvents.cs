@@ -37,8 +37,14 @@ public class TextEvents : MonoBehaviour
             case "CloseDialogue":
                 dialogueMan.ToggleDialogueOpen(false);
                 break;
+            case "ChangeLanguage":
+                dialogueMan.ChangeLanguage(textEvent.GetLinkText());
+                break;
             case "Captcha":
                 ParseAndSendCaptchaData(textEvent.GetLinkText());
+                break;
+            case "CaptchaAlign":
+                ChangeCaptchaAlignment(textEvent.GetLinkText());
                 break;
             case "Letterbox":
                 ParseAndSendLetterboxData(textEvent.GetLinkText());
@@ -110,6 +116,12 @@ public class TextEvents : MonoBehaviour
             //Debug.LogFormat($"Adding modifier param element: {modifierData[i - 2]}");
         }
         conversationMan.StartMinigame(reqSymbols, botSymbolSet, topSymbolSet, modifierData);
+    }
+
+    // change the alignment of the captcha minigame
+    private void ChangeCaptchaAlignment(string linkText)
+    {
+        minigameMan.SetCaptchaAlignment(int.Parse(linkText));
     }
 
     // Letterbox data should be formatted <;[topStart];[topEnd];[topDuration];[botStart];[botEnd];[botDuration];[topColor];[botColor];>

@@ -74,7 +74,7 @@ public class MinigameManager : MonoBehaviour
      * MODIFIER IDS AND EFFECTS
      * -1 - no modifiers
      * 0 - tv static filter
-     * 1 - timer; additional params following ID : [timer length (seconds in float)];[line jump # on fail];[line jump # on success]
+     * 1 - timer; additional params following ID : [timer length (seconds in float)];[line jump # on fail]
      * 2 - obstacles
      */
     public void SetupMinigame(string reqSymbols, int botSymbolSet, int topSymbolSet, string[] modifierParams)
@@ -158,9 +158,19 @@ public class MinigameManager : MonoBehaviour
                 Debug.LogException(e);
             }
         }
+
+        ToggleSymbolHighlight();
         ToggleMinigameWindow(true);
     }
 
+    // Change the alignment int in the captcha's animator
+    public void SetCaptchaAlignment(int align)
+    {
+        minigameWindowAnimator.SetInteger("Alignment", align);
+    }
+
+    // Take a string that is formatted as a series of integers separated by ':' and no spaces
+    // The first int should be the number of symbols for the captcha, any additional integers are required symbols
     private int ParseRequiredSymbols(string reqSymbolString)
     {
         string[] splitString = reqSymbolString.Split(':');
@@ -185,6 +195,7 @@ public class MinigameManager : MonoBehaviour
         return numSymbols;
     }
 
+    // Spawn symbols in top screen
     private void SetupTopScreen(int topSymbolSet)
     {
         possibleSymbols = new List<Sprite>(symbolList.GetSymbolSet(topSymbolSet));
@@ -205,6 +216,7 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    // Helper method to set up timer modifier
     private void RunTimerHelper(float timerLength, int jumpToOnFail)
     {
         if(timerEnumerator != null)
@@ -214,6 +226,8 @@ public class MinigameManager : MonoBehaviour
         timerEnumerator = RunTimer(timerLength, jumpToOnFail);
         StartCoroutine(timerEnumerator);
     }
+
+    // Coroutine for timer
     IEnumerator RunTimer(float timerLength, int jumpToOnFail)
     {
         float currTime = 0f;
@@ -227,6 +241,7 @@ public class MinigameManager : MonoBehaviour
         timerEnumerator = null;
     }
 
+    // Helper method to set up obstacle modifier
     private void StartObstacleGenerator()
     {
         if (obstacleGenerator != null)
@@ -237,6 +252,7 @@ public class MinigameManager : MonoBehaviour
         StartCoroutine(obstacleGenerator);
     }
 
+    // Coroutine for obstacle modifier
     IEnumerator ObstacleGenerator()
     {
         int numObstacles = 0;
@@ -254,6 +270,8 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    // Checks that a given location is far enough away from other symbols
+    // returns true on valid location, false otherwise
     public bool CheckSymbolClickableSpacing(Transform transform)
     {
         if (transform == null) return false;
@@ -265,6 +283,7 @@ public class MinigameManager : MonoBehaviour
         return true;
     }
 
+    // Handle a symbol being clicked
     public void SymbolClicked(int symbolID)
     {
         if (currSymbol < requiredSymbolsIDs.Length && symbolID == requiredSymbolsIDs[currSymbol])
@@ -273,15 +292,44 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat($"Wrong symbol! {symbolID}");
+            ResetCaptcha();
         }
 
         if(currSymbol >= requiredSymbolsIDs.Length)
         {
             FinishMinigame();
         }
+        else
+        {
+            ToggleSymbolHighlight();
+        }
     }
 
+    // Reset captcha when incorrect symbol is clicked
+    private void ResetCaptcha()
+    {
+        currSymbol = 0;
+        foreach(Transform transform in symbolClickableTransforms)
+        {
+            transform.localPosition = Vector3.zero;
+        }
+        foreach(Transform transform in symbolClickableTransforms)
+        {
+            transform.gameObject.GetComponent<SymbolClickableScript>().RandomizePosition();
+        }
+    }
+
+    // Make the current symbol highlight
+    private void ToggleSymbolHighlight()
+    {
+        for (int i = 0; i < requiredSymbolsIDs.Length; i++)
+        {
+            SymbolFrameScript symbolFrame = symbolFramesParentObj.transform.GetChild(i).GetComponent<SymbolFrameScript>();
+            if(symbolFrame != null) {symbolFrame.ToggleHighlight(i == currSymbol); }
+        }
+    }
+
+    // Handle end of minigame
     private void FinishMinigame()
     {
         ToggleMinigameWindow(false);
@@ -289,12 +337,14 @@ public class MinigameManager : MonoBehaviour
         if(conversationMan != null) conversationMan.FinishMinigame();
     }
 
+    // Toggle the minigame window being shown
     private void ToggleMinigameWindow(bool isOpen)
     {
         minigameWindowAnimator.SetBool("Open", isOpen);
         //contextAnimator.SetTrigger("ToggleContextWindow");
     }
 
+    // Clean up the symbols and frames and modifier windows after minigame finishes
     private void CleanUpMinigameWindow()
     {
         int numSymbolFrames = symbolFramesParentObj.transform.childCount;

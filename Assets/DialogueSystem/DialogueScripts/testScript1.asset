@@ -25,9 +25,11 @@ MonoBehaviour:
   - Minigame#Time for a minigame!
   - '#<link="Captcha"><style="Invis"><;3:1:2:3;0;0;This has a static modifier;0;></link></style>'
   - '#'
-  - '#<link="Captcha"><style="Invis"><;3;1;1;This has a timer;1;10.0;12;></link></style>'
+  - '#<style="Invis"><link="CaptchaAlign>-1</link><link="Captcha"><;3;1;1;This has
+    a timer;1;10.0;12;></link></style>'
   - Captcha#Timer passed<link="JumpToLine"><style="Invis">13</link></style>
   - Captcha#Timer failed
-  - '#<link="Captcha"><style="Invis"><;3;0;1;This has obstacles;2;></link></style>'
+  - '#<style="Invis"><link="CaptchaAlign">0</link><link="Captcha"><;3;0;1;This has
+    obstacles;2;></link></style>'
   - Tester#Searching for dialogue text script <link="ChangeScript"><style="Invis">testScript2</link></style>
   - Tester#Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>

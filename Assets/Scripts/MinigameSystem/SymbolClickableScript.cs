@@ -32,7 +32,7 @@ public class SymbolClickableScript : MonoBehaviour
         RandomizePosition();
     }
 
-    private void RandomizePosition()
+    public void RandomizePosition()
     {
         RectTransform topScreenRect = topScreenParent.GetComponent<RectTransform>();
         float rectWidth = topScreenRect.rect.width;
