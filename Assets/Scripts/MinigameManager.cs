@@ -292,6 +292,7 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
+            minigameWindowAnimator.SetTrigger("ShakeTopScreen");
             ResetCaptcha();
         }
 
