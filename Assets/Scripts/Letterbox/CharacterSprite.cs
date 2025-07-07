@@ -30,7 +30,7 @@ public class CharacterSprite : MonoBehaviour
         //if (isFlip) Flip();
     }
 
-    public void CreateShadow(Color color, Vector3 offset)
+    private void CreateShadow(Color color, Vector3 offset)
     {
         shadow = Instantiate(gameObject, transform);
         shadow.transform.SetParent(null);
@@ -50,5 +50,16 @@ public class CharacterSprite : MonoBehaviour
         flipped.y *= -1;
         rectTransform.localScale = flipped;
         //Debug.Log("flip");
+    }
+
+    public void AddShadow(bool hasShadow)
+    {
+        this.hasShadow = hasShadow;
+    }
+
+    public void ShadowSettings(Color shadowColor, Vector2 shadowOffset)
+    {
+        this.shadowColor = shadowColor;
+        this.shadowOffset = shadowOffset;
     }
 }

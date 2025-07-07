@@ -116,12 +116,12 @@ public class BGElement : MonoBehaviour
         rectTransform.offsetMax = Vector2.zero;
     }
 
-    public void setLayer(int index)
+    private void setLayer(int index)
     {
         rectTransform.transform.SetSiblingIndex(index);
     }
 
-    public void addShadow(Color color, Vector3 offset)
+    private void addShadow(Color color, Vector3 offset)
     {
         shadow = Instantiate(gameObject, transform);
         shadow.transform.SetParent(null);
@@ -133,5 +133,46 @@ public class BGElement : MonoBehaviour
         shadow.transform.position = transform.position + offset;
         shadow.transform.SetParent(transform.parent);
         transform.SetParent(shadow.transform);
+    }
+
+    public void SetMovement(float startPercent, float endPercent, float duration, AnimationCurve curve = null)
+    {
+        this.startPercent = startPercent;
+        this.endPercent = endPercent;
+        this.duration = duration;
+        if(curve != null)
+        {
+            this.movementCurve = curve;
+            this.useCurve = true;
+        } else
+        {
+            this.useCurve = false;
+        }
+    }
+
+    public void SetLoop(bool loop)
+    {
+        this.loop = loop;
+    }
+
+    public void SetIfBackground(bool ifBackground)
+    {
+        isBackground = ifBackground;
+    }
+
+    public void SetLayer(int layer)
+    {
+        layerIndex = layer;
+    }
+
+    public void AddShadow(bool hasShadow)
+    {
+        this.hasShadow = hasShadow;
+    }
+
+    public void ShadowSettings(Color shadowColor, Vector2 shadowOffset)
+    {
+        this.shadowColor = shadowColor;
+        this.shadowOffset = shadowOffset;
     }
 }
