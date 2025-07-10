@@ -32,8 +32,10 @@ public class TestManager : MonoBehaviour
     [SerializeField] private float duration; // Length of movement
     [SerializeField] private AnimationCurve movementCurve; // Curve of movement
 
+    // Background variables
     [SerializeField] private bool useLoop; // If background repeats
     [SerializeField] private bool isBackground; // If background image needs resize to screen size
+    [SerializeField] private bool tiled; // If background image repeats
 
     // CharacterSprite variables
     [SerializeField] private bool addShadow; // Add shadow
@@ -47,6 +49,7 @@ public class TestManager : MonoBehaviour
 
         if (RunTests)
         {
+            Debug.Log("Run Test: " + runTest);
             switch (runTest)
             {
                 case Tests.TestLetterBox1:
@@ -65,11 +68,13 @@ public class TestManager : MonoBehaviour
                     testBG.SetMovement(0, 100, 5, AnimationCurve.EaseInOut(0, 0, 1, 1));
                     testBG.SetLoop(true);
                     testBG.SetIfBackground(true);
+                    testBG.loadImage();
                     break;
                 case Tests.TestCharacterShadow1:
                     CharObj.SetActive(true);
                     testChar.AddShadow(true);
                     testChar.ShadowSettings(Color.black, new Vector2(3, 3));
+                    testChar.loadImage();
                     break;
                 case Tests.TestLetterBoxVariable:
                     LBObj.SetActive(true);
@@ -81,11 +86,15 @@ public class TestManager : MonoBehaviour
                     testBG.SetMovement(startPercent, endPercent, duration, movementCurve);
                     testBG.SetLoop(useLoop);
                     testBG.SetIfBackground(isBackground);
+                    testBG.SetTiled(tiled);
+                    testBG.loadImage();
                     break;
                 case Tests.TestCharacterShadowVariable:
                     CharObj.SetActive(true);
                     testChar.AddShadow(addShadow);
                     testChar.ShadowSettings(shadowColor, shadowOffset);
+                    //testChar.Resize();
+                    testChar.loadImage();
                     break;
             }
         }

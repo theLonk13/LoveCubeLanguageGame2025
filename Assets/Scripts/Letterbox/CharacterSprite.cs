@@ -18,16 +18,22 @@ public class CharacterSprite : MonoBehaviour
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        if(hasShadow)
-        {
-            CreateShadow(shadowColor, shadowOffset);
-        }
+        //Debug.Log("aaaa: " + rectTransform);
+        loadImage();
     }
 
     // Update is called once per frame
     void Update()
     {
         //if (isFlip) Flip();
+    }
+
+    public void loadImage()
+    {
+        if (hasShadow)
+        {
+            CreateShadow(shadowColor, shadowOffset);
+        }
     }
 
     private void CreateShadow(Color color, Vector3 offset)
@@ -61,5 +67,15 @@ public class CharacterSprite : MonoBehaviour
     {
         this.shadowColor = shadowColor;
         this.shadowOffset = shadowOffset;
+    }
+
+    public void Resize()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        Debug.Log("a: " + rectTransform);
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
     }
 }

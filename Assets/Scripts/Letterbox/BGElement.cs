@@ -37,29 +37,8 @@ public class BGElement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (hasShadow)
-        {
-            addShadow(shadowColor, shadowOffset);
-        }
-
         rectTransform = GetComponent<RectTransform>();
-        originalPos = rectTransform.anchoredPosition;
-        if (isBackground)
-        {
-            resize(rectTransform);
-        }
-
-        startVal = screenSize * (startPercent / 100f);
-        endVal = screenSize * (endPercent / 100f);
-        startPos = new Vector2(startVal, 0);
-        endPos = new Vector2(endVal, 0);
-
-        width = rectTransform.rect.width;
-        setLayer(layerIndex);
-        if (tiled)
-        {
-            createLoopImages();
-        }
+        loadImage();
     }
 
     // Update is called once per frame
@@ -88,6 +67,32 @@ public class BGElement : MonoBehaviour
             shadow.transform.localPosition = transform.localPosition;
         }
 
+    }
+
+    public void loadImage()
+    {
+        if (hasShadow)
+        {
+            addShadow(shadowColor, shadowOffset);
+        }
+        originalPos = rectTransform.anchoredPosition;
+        //Debug.Log("is loop: " + loop);
+        if (isBackground)
+        {
+            resize(rectTransform);
+        }
+
+        startVal = screenSize * (startPercent / 100f);
+        endVal = screenSize * (endPercent / 100f);
+        startPos = new Vector2(startVal, 0);
+        endPos = new Vector2(endVal, 0);
+
+        width = rectTransform.rect.width;
+        setLayer(layerIndex);
+        if (tiled)
+        {
+            createLoopImages();
+        }
     }
 
     private void createLoopImages()
@@ -174,5 +179,15 @@ public class BGElement : MonoBehaviour
     {
         this.shadowColor = shadowColor;
         this.shadowOffset = shadowOffset;
+    }
+
+    public void SetTiled(bool tiled)
+    {
+        this.tiled = tiled;
+    }
+
+    public void DebugVar()
+    {
+        Debug.Log("Loop: " + loop);
     }
 }
