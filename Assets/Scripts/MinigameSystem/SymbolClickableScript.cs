@@ -24,7 +24,15 @@ public class SymbolClickableScript : MonoBehaviour
         RandomizePosition();
     }
 
-    private void RandomizePosition()
+    public void SetupSymbolClickable(MinigameManager newMan, int id, Sprite sprite)
+    {
+        minigameMan = newMan;
+        symbolID = id;
+        symbolClickableImage.sprite = sprite;
+        RandomizePosition();
+    }
+
+    public void RandomizePosition()
     {
         RectTransform topScreenRect = topScreenParent.GetComponent<RectTransform>();
         float rectWidth = topScreenRect.rect.width;

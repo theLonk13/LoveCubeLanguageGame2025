@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6705e1a4692ab54fb36cfce86413409, type: 3}
+  m_Name: StudySessionScript
+  m_EditorClassIdentifier: 
+  speakerName: 
+  sentences:
+  - "JX#There\u2019s CF! I almost didn\u2019t recognize him all hunched over."
+  - JX#He must be studying really hard!
+  - "JX#Studying so hard\u2026 His head is between the pages\u2026."
+  - "JX#So hard\u2026. The pages are soaked with drool\u2026\u2026"
+  - "JX#He\u2019s asleep. He fell asleep."
+  - JX#Poke his shoulder
+  - "CF#Who\u2019s there?"
+  - "#He\u2019s still face down."
+  - "JX#You\u2019ll drown if you stay that way. Sit up."
+  - CF#Ah, my tutor has arrived.
+  - CF#As you can see, I have been studying.
+  - CF#Studiously.
+  - CF#The words were too small to read, you see, a-and, I needed a closer look,
+  - "JX#You\u2019re not even holding a pencil"
+  - "CF#It\u2019s mental math, ever heard of it?"
+  - JX#This is a language exam
+  - "CF#And you\u2019re LATE"
+  - '#He sits up, face dripping with drool'
+  - "CF#I\u2019m FOUR whole chapters in"
+  - CF#And you dare lecture ME
+  - JX#I do.
+  - JX#Here. This is the PROLOGUE.
+  - "JX#Should be child\u2019s play for a master like you."
+  - CF#Very well. Behold my eloquence.
+  - '#[shitty looking, unplayable captcha, everything looks wrong, speech bubble
+    is shaky]'
+  - "CF#\u2026"
+  - CF#I may have skimmed a little.
+  - JX#That was rough.
+  - JX#Here, Honeymalt and a practice sheet for you. Salt milk for me.
+  - "JX#Although, I\u2019m tempted to keep both drinks after that performance."
+  - CF#This sheet is unreadable.
+  - JX#Simplify it. Think symbolically, not literally.
+  - JX#nbscx vcjdsjkksnd
+  - "#[playable captcha, very easy, CF is speaking more confidently now] Context
+    Box: Like I said, it\u2019s simple enough\u2014it\u2019s just a matter of putting
+    the code in the right order."
+  - "JX#See? That wasn\u2019t so bad."
+  - "CF#I\u2019m so cooked."
+  - "CF#Man, I\u2019m glad I have you to help me through this advanced stuff, I might\u2019ve
+    really struggled on that test."
+  - JX#This was covered in chapter 1
+  - "CF#\u2026"
+  - "CF#Maybe I\u2019ll just swap our exams before we turn them in. Then I\u2019d
+    get top placement."
+  - "JX#Maybe if you swapped pick-up games in the park for more tutoring sessions,
+    dummy. \r\nThen you\u2019d really be \u201Cup to Standard.\u201D\r"
+  - CF#What?
+  - "JX#It\u2019s what they say on Carmine when you\u2019re fluent."
+  - "JX#It\u2019s cute, right?"
+  - "CF#You\u2019ve been taking those dumb extra credits again."
+  - JX#Maybe a few.
+  - "#[another captcha appears]\r\n[context box] that word isn\u2019t in our lesson
+    plan.\r"
+  - JX#Where did you learn to curse like that??
+  - "CF#Maybe I\u2019ve been doing extra credits of my own."
+  - "JX#Sure, if you count a trip to the park as \u201Cextra credit\u201D"
+  - "CF#I\u2019m still amazed you\u2019re as good as you are at this stuff,"
+  - "CF#I mean, you\u2019ve got like three other lang exams coming up this week."
+  - "CF#\u2026"
+  - "CF#I\u2019ll buy you another Salt Milk if you use the word on your next one."
+  - "JX#\u2026"
+  - "JX#Get it to me before it starts tomorrow, and it\u2019s a deal."

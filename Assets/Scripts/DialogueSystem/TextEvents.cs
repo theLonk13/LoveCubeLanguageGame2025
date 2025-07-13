@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 // this script identifies and executes events based on link tags found in text box
 public class TextEvents : MonoBehaviour
@@ -23,9 +24,6 @@ public class TextEvents : MonoBehaviour
             case "testEvent1":
                 Debug.Log("test1 event triggered");
                 break;
-            case "testEvent2":
-                Debug.Log("test2 event triggered");
-                break;
             case "Choice":
                 ParseAndSendChoiceData(textEvent.GetLinkText());
                 break;
@@ -39,12 +37,20 @@ public class TextEvents : MonoBehaviour
             case "CloseDialogue":
                 dialogueMan.ToggleDialogueOpen(false);
                 break;
+            case "ChangeLanguage":
+                dialogueMan.ChangeLanguage(textEvent.GetLinkText());
+                break;
             case "Captcha":
-                int numSymbols = int.Parse(textEvent.GetLinkText());
-                conversationMan.StartMinigame(numSymbols);
+                ParseAndSendCaptchaData(textEvent.GetLinkText());
+                break;
+            case "CaptchaAlign":
+                ChangeCaptchaAlignment(textEvent.GetLinkText());
                 break;
             case "Letterbox":
                 ParseAndSendLetterboxData(textEvent.GetLinkText());
+                break;
+            case "ChangeScript":
+                ParseAndChangeDialogueScript(textEvent.GetLinkText());
                 break;
             default:
                 Debug.Log("default event triggered");
@@ -53,6 +59,7 @@ public class TextEvents : MonoBehaviour
     }
 
     // Choices are formatted <;[choice 1 text]; [choice 1 line]; [choice 2 text]; [choice 2 line]; [choice 3 text]; [choice 3 line];>  *********SUBJECT TO CHANGE**********
+    // texts are strings; line #s are ints
     // Remember to put the closing semi colon
     private void ParseAndSendChoiceData(string linkText)
     {
@@ -92,9 +99,34 @@ public class TextEvents : MonoBehaviour
         dialogueMan.JumpToLine(lineJump);
     }
 
+    // Parse and send captcha minigame data
+    // Captcha data should be formatted <;[number of symbols required];[modifier];[modifier param] (optional - depends on the modifier);[repeat modifier + modifier param until done];>
+    // # of symbols is int; modifier IDs are int; modifier params are floats
+    private void ParseAndSendCaptchaData(string linkText)
+    {
+        string[] splitStrings = linkText.Split(';');
+        string reqSymbols = splitStrings[1];
+        int botSymbolSet = int.Parse(splitStrings[2]);
+        int topSymbolSet = int.Parse(splitStrings[3]);
+        
+        string[] modifierData = new string[splitStrings.Length - 5];
+        for (int i = 4; i < splitStrings.Length - 1; i++)
+        {
+            modifierData[i - 4] = splitStrings[i];
+            //Debug.LogFormat($"Adding modifier param element: {modifierData[i - 2]}");
+        }
+        conversationMan.StartMinigame(reqSymbols, botSymbolSet, topSymbolSet, modifierData);
+    }
+
+    // change the alignment of the captcha minigame
+    private void ChangeCaptchaAlignment(string linkText)
+    {
+        minigameMan.SetCaptchaAlignment(int.Parse(linkText));
+    }
 
     // Letterbox data should be formatted <;[topStart];[topEnd];[topDuration];[botStart];[botEnd];[botDuration];[topColor];[botColor];>
     // Colors are in the format r:g:b
+    // All values are floats
     // Use <size=0%> tag to make the letterbox data invisible mid sentence
     private void ParseAndSendLetterboxData(string linkText)
     {
@@ -142,5 +174,23 @@ public class TextEvents : MonoBehaviour
         }
 
         conversationMan.AnimateLetterbox(topStart, topEnd, topDuration, botStart, botEnd, botDuration, topColor, botColor);
+    }
+
+    // Find and change Dialogue objects for a new script
+    private void ParseAndChangeDialogueScript(string linkText)
+    {
+        //Search for assets by name
+        string[] assets = AssetDatabase.FindAssets(linkText + " t:DialogueTextScript", new[] {"Assets/DialogueSystem/DialogueScripts/"});
+        //Debug.LogFormat($"Found {assets.Length} DialogueTextScript using search term {linkText}");
+
+        //Convert GUIDS to asset path and load asset
+        string assetPath = AssetDatabase.GUIDToAssetPath(assets[0]);
+        DialogueTextScript newScript = AssetDatabase.LoadAssetAtPath<DialogueTextScript>(assetPath);
+        if(newScript == null)
+        {
+            //Debug.LogFormat($"newScript is null.");
+            return;
+        }
+        dialogueMan.ChangeScripts(newScript);
     }
 }

@@ -44,9 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f43039f8dfc8049a214dea4ad9c8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversationMan: {fileID: 0}
   possibleSymbols: []
+  symbolList: {fileID: 11400000, guid: 0b0da5bb3258fec48a02d35d66017c4f, type: 2}
   allowRepeatSymbols: 0
   symbolFramePrefab: {fileID: 2012771679971739613, guid: 3d97b675ee2eeac4d9a4e18229d4cac7, type: 3}
   symbolFramesParentObj: {fileID: 0}
   symbolClickablePrefab: {fileID: 8277189832852822190, guid: 92a0c39ae676b17418095148831af9d5, type: 3}
-  topScreenParent: {fileID: 0}
+  symbolClickableParent: {fileID: 0}
+  minSymbolDistance: 40
+  minigameWindowAnimator: {fileID: 0}
+  contextTextbox: {fileID: 0}
+  contextAnimator: {fileID: 0}
+  staticFilter: {fileID: 0}
+  timerParent: {fileID: 0}
+  obstaclesParent: {fileID: 0}
+  obstaclePrefab: {fileID: 8007543784840382926, guid: 07c18db54d09f5e4695262aef6f43a3a, type: 3}
+  maxNumObstacles: 5

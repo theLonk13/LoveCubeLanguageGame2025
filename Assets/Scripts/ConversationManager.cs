@@ -17,12 +17,15 @@ public class ConversationManager : MonoBehaviour
     private bool showChoicesUpdated = false; // tracks whether the value of showChoices has been changed from its previous value, and needs to be updated
 
     private bool activateMinigameFlag = false; // tracks whether the minigame should be open and if it already has been opened
-    private int[] minigameParams = new int[1];
+    private string[] captchaParams = { "" };
+    private string captchaRequiredSymbols = "";
+    private int botSymbolSet = -1;
+    private int topSymbolSet = -1;
 
     private void Update()
     {
         if(showChoicesUpdated) UpdateShowChoicesHelper();
-        if (activateMinigameFlag) StartMinigameHelper(minigameParams[0]);
+        if (activateMinigameFlag) StartMinigameHelper();
     }
 
     public void UpdateShowChoices(bool showChoices)
@@ -36,15 +39,18 @@ public class ConversationManager : MonoBehaviour
         showChoicesUpdated = false;
     }
 
-    public void StartMinigame(int numSymbols)
+    public void StartMinigame(string reqSymbols, int botSymbolSet, int topSymbolSet, string[] modifierData)
     {
-        minigameParams[0] = numSymbols;
+        captchaRequiredSymbols = reqSymbols;
+        captchaParams = modifierData;
+        this.botSymbolSet = botSymbolSet;
+        this.topSymbolSet = topSymbolSet;
         activateMinigameFlag = true;
     }
 
-    private void StartMinigameHelper(int numSymbols)
+    private void StartMinigameHelper()
     {
-        minigameMan.SetupMinigame(numSymbols);
+        minigameMan.SetupMinigame(captchaRequiredSymbols, botSymbolSet, topSymbolSet, captchaParams);
         dialogueMan.ToggleDialogueOpen(false);
         activateMinigameFlag = false;
     }
@@ -65,5 +71,10 @@ public class ConversationManager : MonoBehaviour
     {
         letterboxMan.animateTopBar(topStart, topEnd, topDuration);
         letterboxMan.animateBottomBar(botStart, botEnd, botDuration);
+    }
+
+    public void JumpToLine(int lineNumber)
+    {
+        dialogueMan.JumpToLine(lineNumber);
     }
 }

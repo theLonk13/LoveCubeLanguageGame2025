@@ -14,20 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: Tester
   sentences:
-  - <link="test"><size=0%><weewooweewoo:></link></size>There is a tag at the start
-    of this sentence.
-  - Letterbox <link="Letterbox"><size=0%><;25;20;1;25;40;1;0:0:1;1:0:0;></link></size>testing
-  - A sentence <style="KeyTextRed"><link="testObj1">with</style></link> a key word
-    somewhere.
-  - A second sentence with a key <style="KeyTextRed"><link="testObj2">word</style></link>
-    somewhere.
-  - A third sentence with the same object as the first <style="KeyTextRed"><link="testObj1">sentence</style></link>.
-  - Now <style="KeyTextRed"><link="testObj1">what</style></link> if we put them <style="KeyTextRed"><link="testObj2">together?</style></link>
-  - Okay what if we made something trigger an<link="testEvent1"> event?</link>
-  - Lets try some choices <link="Choice"><style="Invis"><;choice1;8;choice2;9;choice3;10;></link></style>
-  - You picked choice 1! <link="JumpToLine"><style="Invis">11</link></style>
-  - You picked choice 2! <link="JumpToLine"><style="Invis">11</link></style>
-  - You picked choice 3!
-  - Time for a minigame!
-  - <link="Captcha"><style="Invis">3</link></style>
-  - Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>
+  - Teste#<link="test"><size=0%><weewooweewoo:></link></size>There is a tag at the
+    start of this sentence.
+  - Letterbox#Letterbox <link="Letterbox"><size=0%><;25;20;1;25;40;1;0:0:1;1:0:0;></link></size>testing
+  - Event#Okay what if we made something trigger an<link="testEvent1"> event?</link>
+  - Choice#Lets try some choices <link="Choice"><style="Invis"><;choice1;4;choice2;5;choice3;6;></link></style>
+  - '#You picked choice 1! <link="JumpToLine"><style="Invis">7</link></style>'
+  - '#You picked choice 2! <link="JumpToLine"><style="Invis">7</link></style>'
+  - '#You picked choice 3!'
+  - Minigame#Time for a minigame!
+  - '#<link="Captcha"><style="Invis"><;3:1:2:3;0;0;This has a static modifier;0;></link></style>'
+  - '#'
+  - '#<style="Invis"><link="CaptchaAlign>-1</link><link="Captcha"><;3;1;1;This has
+    a timer;1;10.0;12;></link></style>'
+  - Captcha#Timer passed<link="JumpToLine"><style="Invis">13</link></style>
+  - Captcha#Timer failed
+  - '#<style="Invis"><link="CaptchaAlign">0</link><link="Captcha"><;3;0;1;This has
+    obstacles;2;></link></style>'
+  - Tester#Searching for dialogue text script <link="ChangeScript"><style="Invis">testScript2</link></style>
+  - Tester#Would you like to go to the beginning or quit? <link="Choice"><style="Invis"><;Beginning;0;Quit;;;;></link></style>

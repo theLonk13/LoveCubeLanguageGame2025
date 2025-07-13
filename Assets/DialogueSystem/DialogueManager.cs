@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     // Textboxes for dialogue
     [SerializeField] TextMeshProUGUI nameTextBox;
     [SerializeField] TextMeshProUGUI dialogueTextBox;
+    [SerializeField] TextMeshProUGUI languageTextBox;
 
     // ChoicesUI
     [SerializeField] GameObject choicesUI;
@@ -28,6 +29,10 @@ public class DialogueManager : MonoBehaviour
     IEnumerator currDialogue;
     // Bool to track if text is being typed currently
     bool typing = false;
+    // Strings to track name and sentence currently spoken
+    private string currSpeakerName = "";
+    private string currLanguageSpoken = "";
+    private string currSentenceSpoken = "";
 
     // Speed at which characters are displayed
     [SerializeField] float CharacterDisplayDelaySeconds = .05f;
@@ -58,6 +63,8 @@ public class DialogueManager : MonoBehaviour
 
         nameTextBox.text = dialogue.speakerName;
         dialogueAnim.SetBool("Open", true);
+
+        DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
@@ -66,7 +73,7 @@ public class DialogueManager : MonoBehaviour
         if (typing)
         {
             StopCoroutine(currDialogue);
-            dialogueTextBox.text = sentences[sentenceTracker];
+            dialogueTextBox.text = currSentenceSpoken;
             typing = false;
             return;
         }else if (currDialogue != null) { StopCoroutine(currDialogue); }
@@ -78,7 +85,14 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences[++sentenceTracker];
-        currDialogue = TypeSentence(sentence);
+        
+        // Parse speaker name and dialogue content
+        string[] currSentenceSplit = sentence.Split('#');
+        currSpeakerName = currSentenceSplit[0];
+        currSentenceSpoken = currSentenceSplit[1];
+
+        nameTextBox.text = currSpeakerName;
+        currDialogue = TypeSentence(currSentenceSpoken);
         if (currTextEventInvoker != null)
         {
             currTextEventInvoker.NewSentenceCleanup();
@@ -171,5 +185,15 @@ public class DialogueManager : MonoBehaviour
     public void ToggleDialogueOpen(bool show)
     {
         dialogueAnim.SetBool("Open", show);
+    }
+
+    public void ChangeScripts(DialogueTextScript newScript)
+    {
+        StartDialogue(newScript);
+    }
+
+    public void ChangeLanguage(string language)
+    {
+        languageTextBox.text = $"SPEAKING {language.ToUpper()}";
     }
 }

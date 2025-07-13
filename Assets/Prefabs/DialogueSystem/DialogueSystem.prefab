@@ -410,41 +410,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2410034182723781943, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: textbox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2872136983295992542, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5167100705063454101, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_RaycastTarget
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5167100705063454101, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5167100705063454101, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_HorizontalAlignment
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6091305981112652911, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 335.9877
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -20.830002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 167.9939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1408000656974086186, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197745860957380797, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -397.1333
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197745860957380797, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -148.4778
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197745860957380797, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 170.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197745860957380797, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 57.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987161157062589399, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987161157062589399, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 170
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987161157062589399, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5494
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987161157062589399, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 8216170165258161007, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8241621387185942547, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
       propertyPath: m_Name
       value: DialogueBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 9098811254628424260, guid: 9937d60b8d9abc8489aca632048ebf36, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
