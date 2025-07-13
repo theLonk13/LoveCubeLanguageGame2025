@@ -11,7 +11,11 @@ public class LetterboxAnimator : MonoBehaviour
     public Image topBarVisual;
     public Image bottomBarVisual;
 
+<<<<<<< HEAD
     // Movement Variables
+=======
+
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     private Vector2 topStartPos;
     private Vector2 topEndPos;
     private float topDuration;
@@ -25,6 +29,7 @@ public class LetterboxAnimator : MonoBehaviour
     private bool isTopMoving = false;
     private bool isBottomMoving = false;
 
+<<<<<<< HEAD
     private bool useTopMovementCurve = false;
     private bool useBottomMovementCurve = false;
     private AnimationCurve topMovementCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -47,10 +52,13 @@ public class LetterboxAnimator : MonoBehaviour
     public int zBottomLayer = 0;
 
 
+=======
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     // Debug
     // Start: Percentage of screen bar covers at first
     // End: Percentage of screen bar covers at end
     // Duration: Length of time of the animation
+<<<<<<< HEAD
     public enum Tests
     {
         A,
@@ -85,6 +93,16 @@ public class LetterboxAnimator : MonoBehaviour
     
 
 
+=======
+    [SerializeField] private Color testUpColor = Color.black;
+    [SerializeField] private Color testDownColor = Color.black;
+    [SerializeField] private float testUpStart = 0f;
+    [SerializeField] private float testUpEnd = 25f;
+    [SerializeField] private float testUpDuration = 1f;
+    [SerializeField] private float testDownStart = 50f;
+    [SerializeField] private float testDownEnd = 25f;
+    [SerializeField] private float testDownDuration = 1f;
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     void Start()
     {
         // Set Default properties for top and bottom bars
@@ -111,6 +129,7 @@ public class LetterboxAnimator : MonoBehaviour
             setZBottomLayer(zBottomLayer);
         }
 
+<<<<<<< HEAD
         //Testing
         if (RunTests)
         {
@@ -146,6 +165,12 @@ public class LetterboxAnimator : MonoBehaviour
             animateTopColorChange(testTopColorChange1, testTopColorChange2, testTopColorDuration);
             animateBottomColorChange(testBottomColorChange1, testBottomColorChange2, testBottomColorDuration);
         }
+=======
+        AnimateTopBar(testUpStart, testUpEnd, testUpDuration);
+        topBarVisual.color = testUpColor;
+        AnimateBottomBar(testDownStart, testDownEnd, testDownDuration);
+        bottomBarVisual.color = testDownColor;
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     }
 
     // Testing manually creating curves
@@ -168,8 +193,8 @@ public class LetterboxAnimator : MonoBehaviour
         {
             topTimeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(topTimeElapsed / topDuration);
-            if(useTopMovementCurve) t = topMovementCurve.Evaluate(t);
-            topBar.anchoredPosition = Vector2.Lerp(topStartPos, topEndPos, t);
+            Vector2 newPos = Vector2.Lerp(topStartPos, topEndPos, t);
+            topBar.anchoredPosition = newPos;
 
             if (t >= 1f)
             { 
@@ -182,8 +207,13 @@ public class LetterboxAnimator : MonoBehaviour
         {
             bottomTimeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(bottomTimeElapsed / bottomDuration);
+<<<<<<< HEAD
             if (useBottomMovementCurve) t = bottomMovementCurve.Evaluate(t);
             bottomBar.anchoredPosition = Vector2.Lerp(bottomStartPos, bottomEndPos, t);
+=======
+            Vector2 newPos = Vector2.Lerp(bottomStartPos, bottomEndPos, t);
+            bottomBar.anchoredPosition = newPos;
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
 
             if (t >= 1f)
             {
@@ -191,24 +221,9 @@ public class LetterboxAnimator : MonoBehaviour
                 useBottomMovementCurve = false;
             }
         }
-
-        if (isTopColorChanging)
-        {
-            topColorTimeElapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(topColorTimeElapsed / topColorDuration);
-            topBarVisual.color = Color.Lerp(topColorStart, topColorEnd, t);
-            if(t>= 1f) isTopColorChanging = false;
-        }
-
-        if (isBottomColorChanging)
-        {
-            bottomColorTimeElapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(bottomColorTimeElapsed / bottomColorDuration);
-            bottomBarVisual.color = Color.Lerp(bottomColorStart, bottomColorEnd, t);
-            if (t >= 1f) isBottomColorChanging = false;
-        }
     }
 
+<<<<<<< HEAD
     public void setTopBar(float percent)
     {
         float screenHeight = Screen.height;
@@ -228,6 +243,9 @@ public class LetterboxAnimator : MonoBehaviour
     }
 
     public void animateTopBar(float startPercent, float endPercent, float duration, AnimationCurve curve = null)
+=======
+    public void AnimateTopBar(float startPercent, float endPercent, float duration)
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     {
         float screenHeight = Screen.height;
         float barHeight = screenHeight * 0.5f;
@@ -239,12 +257,13 @@ public class LetterboxAnimator : MonoBehaviour
         topDuration = duration;
         topTimeElapsed = 0f;
         isTopMoving = true;
-
-        if (curve != null) useTopMovementCurve = true;
-        topMovementCurve = curve;
     }
 
+<<<<<<< HEAD
     public void animateBottomBar(float startPercent, float endPercent, float duration, AnimationCurve curve = null)
+=======
+    public void AnimateBottomBar(float startPercent, float endPercent, float duration)
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     {
         float screenHeight = Screen.height;
         float startY = screenHeight * (startPercent / 100f);
@@ -255,6 +274,7 @@ public class LetterboxAnimator : MonoBehaviour
         bottomDuration = duration;
         bottomTimeElapsed = 0f;
         isBottomMoving = true;
+<<<<<<< HEAD
 
         if (curve != null) useBottomMovementCurve = true;
         bottomMovementCurve = curve;
@@ -296,5 +316,7 @@ public class LetterboxAnimator : MonoBehaviour
     public void setZBottomLayer(int layer)
     {
         bottomBar.transform.SetSiblingIndex(layer);
+=======
+>>>>>>> 75a4ae39e4d6de00846c2659ad042cb2fc671bdb
     }
 }
