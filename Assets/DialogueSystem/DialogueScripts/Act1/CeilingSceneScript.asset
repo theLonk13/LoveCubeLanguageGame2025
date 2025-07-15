@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6705e1a4692ab54fb36cfce86413409, type: 3}
+  m_Name: CeilingSceneScript
+  m_EditorClassIdentifier: 
+  speakerName: 
+  sentences:
+  - JX#Another productive day. A productive week, in fact!
+  - "JX#Just like last week\u2026"
+  - "JX#And the week before, and\u2026"
+  - "JX#\u2026"
+  - "JX#I\u2019m getting to the end of the process, though."
+  - JX#Got to stay upbeat and keep moving forward!
+  - "JX#Okay\u2026one more practice, just to be sure."
+  - JX#Besides, practice always calms me down before bed.
+  - "JX#The test will start out simple enough\u2026"
+  - "#[simple captcha, very similar to the study session one from before with CF]\r"
+  - JX#Easy enough. This is starting to feel more natural.
+  - JX#But, what if the exam mixes part of Chapter Two with Chapter Five?
+  - '#[Another Standard captcha, this time with a very simple modifier?]'
+  - JX#Okay. Still straightforward, but a little more time-consuming.
+  - "JX#I\u2019m quick at the basic questions, so I\u2019ll have to save time for
+    the longer ones."
+  - "JX#I\u2019ll do a quick scan of the test when I first sit down and figure out
+    what to prioritize!"
+  - JX#That feels like a good plan.
+  - "JX#\u2026"
+  - "JX#Three hours doesn\u2019t seem like a lot of time, though."
+  - "JX#\u2026"
+  - JX#I need to rest.
+  - "JX#Otherwise, I\u2019ll start spiraling."
+  - "JX#And that won\u2019t end well."
+  - "JX#\u2026"
+  - JX#I can do this.
+  - "JX#A few hours from now, I\u2019ll be celebrating with my friends."
+  - JX#Another top score, another step closer to my dream job.
+  - 
