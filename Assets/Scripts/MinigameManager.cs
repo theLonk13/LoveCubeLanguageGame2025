@@ -59,6 +59,11 @@ public class MinigameManager : MonoBehaviour
     [Tooltip("Maximum number of obstacles on the screen at a time")]
     [SerializeField] private int maxNumObstacles;
 
+    // Saved symbol locations
+    private Vector3[] savedSymbolLocations = new Vector3[1];
+    private int[] savedSymbolIDs = new int[1];
+    private Sprite[] savedSymbolSprites = new Sprite[1];
+
     private void Awake()
     {
         SetupPossibleSymbols();
@@ -147,6 +152,14 @@ public class MinigameManager : MonoBehaviour
                         Debug.Log("Obstacle modifier activated");
                         if(obstaclesParent != null) obstaclesParent.SetActive(true);
                         StartObstacleGenerator();
+                        break;
+                    case 100: //"Modifiers of ID 100 or above are more just backend functions built into the modifier system. These do not affect gameplay directly
+                        // This should signal that the symbol locations for this captcha are to be saved for later use
+                        SaveSymbolLocations();
+                        break;
+                    case 101:
+                        // This should signal that the saved locations of previous symbols should be seen as faded out in the bg of the new captcha
+                        PlaceErasedSymbols();
                         break;
                     default:
                         Debug.LogFormat($"No modifier of ID {modifierID} found.");
@@ -270,6 +283,18 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    // Reuses saved symbol locations to place dummy symbols
+    private void PlaceErasedSymbols()
+    {
+        for(int i = 0; i < savedSymbolSprites.Length; i++)
+        {
+            GameObject newSymbolClickable = GameObject.Instantiate(symbolClickablePrefab, symbolClickableParent.transform);
+            SymbolClickableScript newSymbolClickableScript = newSymbolClickable.GetComponent<SymbolClickableScript>();
+            newSymbolClickableScript.SetupSymbolClickable(this, savedSymbolIDs[i], savedSymbolSprites[i]);
+            newSymbolClickableScript.SetClickable(false);
+        }
+    }
+
     // Checks that a given location is far enough away from other symbols
     // returns true on valid location, false otherwise
     public bool CheckSymbolClickableSpacing(Transform transform)
@@ -327,6 +352,30 @@ public class MinigameManager : MonoBehaviour
         {
             SymbolFrameScript symbolFrame = symbolFramesParentObj.transform.GetChild(i).GetComponent<SymbolFrameScript>();
             if(symbolFrame != null) {symbolFrame.ToggleHighlight(i == currSymbol); }
+        }
+    }
+
+    // Save locations and IDs of symbols in captcha
+    private void SaveSymbolLocations()
+    {
+        Transform[] savedSymbols = new Transform[symbolClickableParent.transform.childCount];
+        savedSymbolLocations = new Vector3[symbolClickableParent.transform.childCount];
+        savedSymbolIDs = new int[symbolClickableParent.transform.childCount];
+
+        for(int i = 0; i < symbolClickableParent.transform.childCount; i++)
+        {
+            savedSymbols[i] = symbolClickableParent.transform.GetChild(i);
+        }
+
+        for(int i = 0; i < savedSymbols.Length; i++)
+        {
+            SymbolClickableScript thisSymbolScript = savedSymbols[i].gameObject.GetComponent<SymbolClickableScript>();
+            if(thisSymbolScript != null)
+            {
+                savedSymbolIDs[i] = thisSymbolScript.GetSymbolID();
+                savedSymbolLocations[i] = savedSymbols[i].position;
+                savedSymbolSprites[i] = thisSymbolScript.GetSymbolSprite();
+            }
         }
     }
 
