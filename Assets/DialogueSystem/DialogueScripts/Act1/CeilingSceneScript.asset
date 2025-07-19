@@ -23,7 +23,7 @@ MonoBehaviour:
   - "JX#Okay\u2026one more practice, just to be sure."
   - JX#Besides, practice always calms me down before bed.
   - "JX#The test will start out simple enough\u2026"
-  - "#[simple captcha, very similar to the study session one from before with CF]\r"
+  - "#<link=\"Captcha\"><style=\"Invis\"><;3;0;0;The test will start out simple enough\u2026;></link></style>\r"
   - JX#Easy enough. This is starting to feel more natural.
   - JX#But, what if the exam mixes part of Chapter Two with Chapter Five?
   - '#[Another Standard captcha, this time with a very simple modifier?]'
