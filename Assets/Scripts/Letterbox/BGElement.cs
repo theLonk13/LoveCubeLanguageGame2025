@@ -33,15 +33,16 @@ public class BGElement : MonoBehaviour
     private float width;
     GameObject shadow;
 
+    private List<RectTransform> backgrounds = new List<RectTransform>();
+    public float bgSpeed = 10f;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         loadImage();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -49,6 +50,37 @@ public class BGElement : MonoBehaviour
         float t = Mathf.Clamp01(timeElapsed / duration);
         if (useCurve) t = movementCurve.Evaluate(t);
         rectTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+        /*
+        if (!isBackground)
+        {
+            rectTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+        } else
+        {
+            
+            rectTransform.anchoredPosition += new Vector2(bgSpeed * Time.deltaTime, 0);
+            foreach (RectTransform bg in backgrounds)
+            {
+                bg.anchoredPosition += new Vector2(bgSpeed * Time.deltaTime, 0);
+            }
+
+            RectTransform last = backgrounds[backgrounds.Count - 1];
+            if((last.anchoredPosition.x < Screen.width) || (last.anchoredPosition.x + last.rect.width > 0))
+            {
+                createRightImage();
+            }
+
+            if(backgrounds.Count > 2)
+            {
+                RectTransform first = backgrounds[0];
+                if((first.anchoredPosition.x > Screen.width) || (first.anchoredPosition.x + first.rect.width < 0))
+                {
+                    Destroy(first.gameObject);
+                    backgrounds.RemoveAt(0);
+                }
+            }
+            
+        }
+        */
 
         if (tiled)
         {
@@ -58,9 +90,19 @@ public class BGElement : MonoBehaviour
 
         if(t >= 1f && loop)
         {
+            //Debug.Log("Loop A");
             timeElapsed = 0f;
             rectTransform.anchoredPosition = originalPos;
         }
+
+        /*
+        if(t >= 1f && loop && isBackground)
+        {
+            Debug.Log("Loop B");
+            //timeElapsed = 0f;
+            createRightImage();
+        }
+        */
 
         if(hasShadow)
         {
@@ -76,10 +118,11 @@ public class BGElement : MonoBehaviour
             addShadow(shadowColor, shadowOffset);
         }
         originalPos = rectTransform.anchoredPosition;
-        //Debug.Log("is loop: " + loop);
+
         if (isBackground)
         {
             resize(rectTransform);
+            //createRightImage();
         }
 
         startVal = screenSize * (startPercent / 100f);
@@ -111,6 +154,17 @@ public class BGElement : MonoBehaviour
 
         left.transform.SetSiblingIndex(transform.GetSiblingIndex());
         right.transform.SetSiblingIndex(transform.GetSiblingIndex());
+    }
+
+    private void createRightImage()
+    {
+        GameObject right = Instantiate(gameObject, transform.parent);
+        Destroy(right.GetComponent<BGElement>());
+
+        rightRect = right.GetComponent<RectTransform>();
+        backgrounds.Add(rightRect);
+        rightRect.anchoredPosition = new Vector2(originalPos.x + width, originalPos.y);
+
     }
 
     private void resize(RectTransform rectTransform)
