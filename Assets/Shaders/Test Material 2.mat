@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CRT Material
-  m_Shader: {fileID: -6465566751694194690, guid: bb1b24c6475cfd14195f3e8c469374e3, type: 3}
+  m_Name: Test Material 2
+  m_Shader: {fileID: -6465566751694194690, guid: f60409aa77222be42a117309b44604fb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,11 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c7bae6ead1e675642bc43cecf66233ab, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Main_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2109668f51a567e4d96b86ed5ea7d841, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -45,9 +41,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blur_Offset: 0.12
-    - _Number_of_Scan_Lines: 400
-    - _Scan_Lines_Speed: -0.009
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Fade: 0
+    m_Colors: []
   m_BuildTextureStacks: []
+--- !u!114 &4939465867059222251
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
