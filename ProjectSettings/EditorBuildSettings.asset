@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DialogueSystemTestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Map/TestMap.unity
+    guid: 8061aa7f83eb9634dae4d7633ba00281
+  - enabled: 1
+    path: Assets/Scenes/Map/TestMapLocation.unity
+    guid: 3bf1462903a73b44aa28e94ec8ef585c
   m_configObjects: {}
