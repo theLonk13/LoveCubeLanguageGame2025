@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6705e1a4692ab54fb36cfce86413409, type: 3}
+  m_Name: ParentSceneScript
+  m_EditorClassIdentifier: 
+  speakerName: 
+  sentences:
+  - "DAD#[static]...one sec, got to make sure it\u2019s tuned to the channel\u2026"
+  - JX#Here, let me adjust my own feed, too!
+  - JX#TURN THE TUNING DIAL
+  - DAD#There we go. Nice and clear now.
+  - MOM#You look tired, sweetie. Is everything alright?
+  - "JX#I\u2019m okay, I think."
+  - "JX#I\u2019ve got three exams coming up this week,"
+  - "JX#But I\u2019ll be done soon enough."
+  - "DAD#That\u2019s quite the workload!"
+  - "MOM#I\u2019m sure you\u2019ll get through it\u2013you always do!"
+  - MOM#Just be sure to keep getting enough sleep.
+  - "MOM#I know it\u2019s hard with so much going on all at once."
+  - JX#Thanks, mom.
+  - "JX#I\u2019m trying to stick to my daily planner, and that\u2019s helped with
+    sleep and diet."
+  - MOM#What exams are you studying for?
+  - JX#Well, I have to take a translation certification for Alluvien,
+  - "JX#An advanced Hygri grammar test\u2026"
+  - JX#And the STALE, of course.
+  - "MOM#Oh, stars\u2026I remember having trouble with my own Alluvien exams back
+    in the day."
+  - MOM#Which one are you most worried about?
+  - JX#Haha, definitely the Alluvien one.
+  - "JX#It\u2019s a literary passage, so it has all kinds of metaphors in it."
+  - "MOM#Oh, sure\u2013those are pretty tricky!"
+  - "JX#The STALE is going to be stressful, too, but not because it\u2019s hard."
+  - "JX#There\u2019s just a lot riding on getting at least a decent score."
+  - JX#Companies use lower STALE scores to weed out applications,
+  - JX#even if the applicants are really good at speaking other languages.
+  - MOM#The STALE never changes, does it?
+  - 'DAD#Speaking for both of us: we know you can do it.'
+  - "DAD#You\u2019ve always been our star student."
+  - "MOM#And you\u2019ll be a star no matter where you end up."
+  - "DAD#Speaking of\u2026I bet you\u2019re excited for the job offers to be announced."
+  - DAD#Any word from the inside? Any ConCorp reps floating around?
+  - JX#Not yet.
+  - "JX#I\u2019ve seen a few new people flying in from off-system, but it\u2019s
+    hard to tell who they are."
+  - "JX#It\u2019s pretty exciting here, though. Everyone seems ready to finish up
+    the semester."
+  - "MOM#I\u2019ll bet! It\u2019s been a long wait and a lot of work for all of you."
+  - DAD#What about CF? How is he doing?
+  - "JX#He\u2019s been busy with applications for internships,"
+  - JX#and his marketing and advertising projects are taking up the rest of his time.
+  - JX#We still get together to work on our schoolwork, though.
+  - "JX#It\u2019s nice to have someone to keep me on task!"
+  - "DAD#He\u2019s got a bright future ahead of him, I\u2019m sure."
+  - "DAD#That kid has a knack for making friends\u2013he always has."
+  - MOM#Oh! Have you seen the new ads for the Carmine settlement?
+  - JX#The holoboard ones?
+  - DAD#Yes, those ones!
+  - DAD#We were on the public transit shuttle to work the other day and one popped
+    up.
+  - JX#Yeah, I saw them.
+  - "JX#\u201COne of a Kind Carmine.\u201D"
+  - DAD#It has a nice ring to it.
+  - "JX#I\u2019m so excited! They say the new terrariums ConCorp installed on the
+    surface are up and running."
+  - JX#And the Alluvienne Quarter will be starting its night market soon!
+  - JX#There always seems to be something interesting happening there.
+  - "MOM#It\u2019s good to hear you so excited about this opportunity,"
+  - "MOM#and I\u2019m sure that excitement will come through if they look at your
+    application!"
+  - "MOM#You\u2019ve always made sure that-\r\n"
+  - '#[Static flashes across the screen, accompanied by a brief popup from the university
+    admin:'
+  - '#> This is a public CommSat feed.'
+  - '#> Your time remaining: 01 minutes, 30 seconds until logoff.
+
+'
+  - '#> For more time, please place a request with your residence supervisor.'
+  - "#> Please be considerate of others when using public connection feeds.\u201D]"
+  - "MOM#Wait\u2013what\u2019s happening? We can\u2019t see you."
+  - JX#[You click and exit the popup.]
+  - MOM#Oh! There you are! What was that?
+  - "JX#Sorry\u2026my Comms time is running out."
+  - "JX#I can\u2019t talk much longer."
+  - "DAD#Well, we don\u2019t want to keep you over here talking to us,"
+  - DAD#especially when you have your studies and your friends to attend to!
+  - MOM#Let us know how the exams go!
+  - MOM#When will you call us again?
+  - "JX#I\u2019ll know the results in a week, so I\u2019ll call you then!"
+  - "JX#I love you\u2014I\u2019ll talk to you later."
+  - "MOM#We love you too\u2014talk to you lat-"
+  - "#[\u201CThis is a public CommSat feed."
+  - "#> Your time is up.\r"
+  - "#> Please vacate this channel feed so another user may log on.\u201D]"
+  - 

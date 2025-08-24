@@ -48,9 +48,8 @@ MonoBehaviour:
   - CF#This sheet is unreadable.
   - JX#Simplify it. Think symbolically, not literally.
   - JX#nbscx vcjdsjkksnd
-  - "#[playable captcha, very easy, CF is speaking more confidently now] Context
-    Box: Like I said, it\u2019s simple enough\u2014it\u2019s just a matter of putting
-    the code in the right order."
+  - "#<link=\"Captcha\"><style=\"Invis\"><;3;0;0;Like I said, it\u2019s simple enough\u2014it\u2019s
+    just a matter of putting the code in the right order.;></link></style>"
   - "JX#See? That wasn\u2019t so bad."
   - "CF#I\u2019m so cooked."
   - "CF#Man, I\u2019m glad I have you to help me through this advanced stuff, I might\u2019ve
@@ -66,8 +65,8 @@ MonoBehaviour:
   - "JX#It\u2019s cute, right?"
   - "CF#You\u2019ve been taking those dumb extra credits again."
   - JX#Maybe a few.
-  - "#[another captcha appears]\r\n[context box] that word isn\u2019t in our lesson
-    plan.\r"
+  - "#<link=\"Captcha\"><style=\"Invis\"><;3;0;0; That word isn\u2019t in our lesson
+    plan..;></link></style>\r"
   - JX#Where did you learn to curse like that??
   - "CF#Maybe I\u2019ve been doing extra credits of my own."
   - "JX#Sure, if you count a trip to the park as \u201Cextra credit\u201D"

@@ -49,4 +49,27 @@ public class SymbolClickableScript : MonoBehaviour
     {
         minigameMan.SymbolClicked(symbolID);
     }
+
+    public int GetSymbolID()
+    {
+        return symbolID;
+    }
+
+    public Sprite GetSymbolSprite()
+    {
+        return symbolClickableImage.sprite;
+    }
+
+    public void SetClickable(bool clickable)
+    {
+        if (clickable)
+        {
+            symbolClickableImage.raycastTarget = true;
+        }
+        else
+        {
+            symbolClickableImage.raycastTarget = false;
+            symbolClickableImage.color = new Color(symbolClickableImage.color.r, symbolClickableImage.color.g, symbolClickableImage.color.b, .5f);
+        }
+    }
 }
