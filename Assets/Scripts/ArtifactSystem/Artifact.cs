@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Artifact : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Artifact : MonoBehaviour
     public int artifactID = -1;
     public int researchPoints = 0;
     public Sprite artifactArt;
+    [SerializeField] Image image;
+    [SerializeField] RectTransform rectTransform;
 
     [Header("Research Level Variables")]
     public int startResearchLevel = 0;
@@ -44,11 +47,22 @@ public class Artifact : MonoBehaviour
         keywordUnlocks = thisArtifactData.keywordUnlocks;
         recordUnlocks = thisArtifactData.recordUnlocks;
         bonusLocations = thisArtifactData.bonusLocations;
+
+        if (artifactArt != null && image != null)
+        {
+            image.sprite = artifactArt;
+        }
     }
 
     public void LoadArtifactData(ArtifactData newData)
     {
         thisArtifactData = newData;
         SetupArtifactData();
+    }
+
+    public void MoveToScreenLocation(GameObject newLoc)
+    {
+        this.gameObject.transform.SetParent(newLoc.transform, false);
+        rectTransform.localPosition = Vector3.zero;
     }
 }

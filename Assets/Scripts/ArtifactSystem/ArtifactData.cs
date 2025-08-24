@@ -6,6 +6,7 @@ using UnityEngine;
 public class ArtifactData : ScriptableObject
 {
     [Header("General variables")]
+    public string artifactName = "";
     public int artifactID = -1;
     public int researchPoints = 0;
     public Sprite artifactArt;
