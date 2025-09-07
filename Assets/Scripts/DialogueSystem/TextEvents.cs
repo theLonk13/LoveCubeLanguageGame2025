@@ -52,6 +52,14 @@ public class TextEvents : MonoBehaviour
             case "ChangeScript":
                 ParseAndChangeDialogueScript(textEvent.GetLinkText());
                 break;
+            case "SetupArtifactChoices":
+                //use to tell dialogue manager to read artifact list and setup choice ui to display all of the artifacts for player to choose
+                dialogueMan.SetupArtifactChoices();
+                break;
+            case "ChooseArtifact":
+                //use to tell dialogue manager that an artifact has been chosen, and to look up the specific dialogue text script to show
+                ParseArtifactChoice(textEvent.GetLinkText());
+                break;
             default:
                 Debug.Log("default event triggered");
                 break;
@@ -192,5 +200,14 @@ public class TextEvents : MonoBehaviour
             return;
         }
         dialogueMan.ChangeScripts(newScript);
+    }
+
+    private void ParseArtifactChoice(string linkText)
+    {
+        int artifactID = int.Parse(linkText);
+        if(dialogueMan != null)
+        {
+            dialogueMan.HandleArtifactChoice(artifactID);
+        }
     }
 }

@@ -8,6 +8,7 @@ public class Artifact : MonoBehaviour
     ArtifactData thisArtifactData;
 
     [Header("General variables")]
+    public string artifactName = "";
     public int artifactID = -1;
     public int researchPoints = 0;
     public Sprite artifactArt;
@@ -41,6 +42,7 @@ public class Artifact : MonoBehaviour
 
     void SetupArtifactData()
     {
+        artifactName = thisArtifactData.artifactName;
         artifactArt = thisArtifactData.artifactArt;
         artifactID = thisArtifactData.artifactID;
         startResearchLevel = thisArtifactData.startResearchLevel;

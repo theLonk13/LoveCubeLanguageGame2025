@@ -196,4 +196,35 @@ public class DialogueManager : MonoBehaviour
     {
         languageTextBox.text = $"SPEAKING {language.ToUpper()}";
     }
+
+    public void SetupArtifactChoices()
+    {
+        ArtifactsManager artifactMan = ArtifactsManager.Instance;
+        Artifact[] artifacts = artifactMan.GetArtifacts();
+        DialogueTextScript artifactChoicesScript = ScriptableObject.CreateInstance<DialogueTextScript>();
+        string[] choiceStrings = new string[artifacts.Length + 1];
+
+        // Setup directory string for choices
+        string directoryString = "What artifact should I research? <link=\"Choice\"><style=\"Invis\"><;";
+        int i = 1;
+        foreach (Artifact artifact in artifacts)
+        {
+            directoryString += $"{artifact.artifactName};{i++};";
+        }
+        directoryString += "></link></style>";
+        choiceStrings[0] = directoryString;
+
+        // Fill in choice lines with tags to handle artifact selections
+        for (i = 1; i < choiceStrings.Length; i++)
+        {
+            choiceStrings[i] = $"<link=\"ChooseArtifact\">{artifacts[i - 1].artifactID}</link>";
+        }
+        
+        artifactChoicesScript.sentences = choiceStrings;
+    }
+
+    public void HandleArtifactChoice(int artifactID)
+    {
+        Debug.Log($"Player selected artifact of ID {artifactID}");
+    }
 }
