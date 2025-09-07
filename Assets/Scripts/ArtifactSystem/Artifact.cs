@@ -13,6 +13,8 @@ public class Artifact : MonoBehaviour
     public Sprite artifactArt;
     [SerializeField] Image image;
     [SerializeField] RectTransform rectTransform;
+    DeskSceneManager deskSceneMan;
+    [SerializeField] Button thisArtifactButton;
 
     [Header("Research Level Variables")]
     public int startResearchLevel = 0;
@@ -64,5 +66,25 @@ public class Artifact : MonoBehaviour
     {
         this.gameObject.transform.SetParent(newLoc.transform, false);
         rectTransform.localPosition = Vector3.zero;
+    }
+
+    public void SetDeskSceneManager(DeskSceneManager deskMan)
+    {
+        deskSceneMan = deskMan;
+    }
+
+    public void SetAsDeskArtifact()
+    {
+        thisArtifactButton.onClick.RemoveAllListeners();
+        thisArtifactButton.onClick.AddListener(DeskOnClick);
+    }
+
+    public void DeskOnClick()
+    {
+        Debug.LogFormat($"DeskOnClick for button {this.ToString()} with ID {artifactID} activated");
+        if(deskSceneMan != null)
+        {
+            deskSceneMan.DisplayExpandedTags($"Test expanded tags for artifact ID {artifactID}");
+        }
     }
 }
