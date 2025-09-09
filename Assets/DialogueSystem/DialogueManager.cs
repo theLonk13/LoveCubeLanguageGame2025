@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
 {
     // Conversation Manager
     [SerializeField] ConversationManager conversationMan;
+    // Location Scene Manager
+    [SerializeField] LocationSceneManager locationMan;
 
     // Textboxes for dialogue
     [SerializeField] TextMeshProUGUI nameTextBox;
@@ -61,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         }
         sentenceTracker = -1;
 
-        nameTextBox.text = dialogue.speakerName;
+        if(nameTextBox!= null)nameTextBox.text = dialogue.speakerName;
         dialogueAnim.SetBool("Open", true);
 
         DisplayNextSentence();
@@ -226,5 +228,9 @@ public class DialogueManager : MonoBehaviour
     public void HandleArtifactChoice(int artifactID)
     {
         Debug.Log($"Player selected artifact of ID {artifactID}");
+        if(locationMan != null)
+        {
+            locationMan.PlayArtifactLocationDialogue(artifactID);
+        }
     }
 }

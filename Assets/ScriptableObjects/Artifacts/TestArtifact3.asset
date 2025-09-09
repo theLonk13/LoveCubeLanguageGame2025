@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 144603d4dcc39e44aac6e31657564c53, type: 3}
-  m_Name: TestArtifact2
+  m_Name: TestArtifact3
   m_EditorClassIdentifier: 
-  artifactName: TestArtifact2
-  artifactID: 2
+  artifactName: TestArtifact3
+  artifactID: 3
   researchPoints: 0
-  artifactArt: {fileID: 21300000, guid: 72ff9351f40db434ebbb6468c418f1f8, type: 3}
-  startResearchLevel: 0
+  artifactArt: {fileID: 21300000, guid: 88c6b6aa6a79ba04e9d44c36cc87d1dc, type: 3}
+  startResearchLevel: 2
   currResearchLevel: 0
-  maxResearchLevel: 1
+  maxResearchLevel: 3
   keywordUnlocks: []
   recordUnlocks: []
   bonusLocations: []

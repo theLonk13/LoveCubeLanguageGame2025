@@ -55,4 +55,13 @@ public class ArtifactsManager : MonoBehaviour
     {
         return artifacts;
     }
+
+    public Artifact FindArtifact(int ID)
+    {
+        foreach(Artifact artifact in artifacts)
+        {
+            if(artifact.artifactID == ID) return artifact;
+        }
+        return null;
+    }
 }
