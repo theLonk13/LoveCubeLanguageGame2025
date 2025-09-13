@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LocationSceneManager : MonoBehaviour
 {   
@@ -53,8 +54,14 @@ public class LocationSceneManager : MonoBehaviour
             int researchLv = artifactMan.FindArtifact(artifactID).currResearchLevel;
             if(locDialogueLibrary != null)
             {
-                DialogueTextScript newDialogue = locDialogueLibrary.artifactLibraries[artifactID - 1].dialogues[researchLv];
-                dialogueMan.StartDialogue(newDialogue);
+                try
+                {
+                    DialogueTextScript newDialogue = locDialogueLibrary.artifactLibraries[artifactID - 1].dialogues[researchLv];
+                    dialogueMan.ChangeScripts(newDialogue);
+                }catch(Exception e)
+                {
+                    Debug.Log($"Error looking up dialogue of artifact ID {artifactID} with research level {researchLv}: {e.Message}");
+                }
             }
         }
     }

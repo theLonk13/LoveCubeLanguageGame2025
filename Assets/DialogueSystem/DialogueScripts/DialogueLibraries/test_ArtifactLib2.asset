@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389413ebe6a4bf24eb9dbb7f042b6fd4, type: 3}
   m_Name: test_ArtifactLib2
   m_EditorClassIdentifier: 
-  dialogues: []
+  dialogues:
+  - {fileID: 0}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: test_ArtifactLib1
   m_EditorClassIdentifier: 
   dialogues:
-  - {fileID: 11400000, guid: 0babcbbab7f4ef944b3106f1518b7f6b, type: 2}
-  - {fileID: 11400000, guid: 8d0dbe34f15fff44fb73cf415472ce50, type: 2}
+  - {fileID: 11400000, guid: bb15e7464f42fb34a9740b09b455a488, type: 2}
+  - {fileID: 11400000, guid: 3b70f385fd723e0499084b610a91b4ba, type: 2}

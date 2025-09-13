@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour
         sentenceTracker = -1;
 
         if(nameTextBox!= null)nameTextBox.text = dialogue.speakerName;
-        dialogueAnim.SetBool("Open", true);
+        if(dialogueAnim != null) dialogueAnim.SetBool("Open", true);
 
         DisplayNextSentence();
     }
@@ -199,6 +199,7 @@ public class DialogueManager : MonoBehaviour
         languageTextBox.text = $"SPEAKING {language.ToUpper()}";
     }
 
+    //KNOWN ISSUE: CANNOT HANDLE MORE THAN 3 ARTIFACTS. NEED TO MODIFY CHOICE HANDLING TO BE DYNAMIC
     public void SetupArtifactChoices()
     {
         ArtifactsManager artifactMan = ArtifactsManager.Instance;
@@ -207,7 +208,7 @@ public class DialogueManager : MonoBehaviour
         string[] choiceStrings = new string[artifacts.Length + 1];
 
         // Setup directory string for choices
-        string directoryString = "What artifact should I research? <link=\"Choice\"><style=\"Invis\"><;";
+        string directoryString = "#What artifact should I research? <link=\"Choice\"><style=\"Invis\"><;";
         int i = 1;
         foreach (Artifact artifact in artifacts)
         {
@@ -215,14 +216,17 @@ public class DialogueManager : MonoBehaviour
         }
         directoryString += "></link></style>";
         choiceStrings[0] = directoryString;
+        Debug.Log($"Directory string: {directoryString}");
 
         // Fill in choice lines with tags to handle artifact selections
         for (i = 1; i < choiceStrings.Length; i++)
         {
-            choiceStrings[i] = $"<link=\"ChooseArtifact\">{artifacts[i - 1].artifactID}</link>";
+            choiceStrings[i] = $"#<link=\"ChooseArtifact\">{artifacts[i - 1].artifactID}</link>";
         }
         
         artifactChoicesScript.sentences = choiceStrings;
+
+        ChangeScripts(artifactChoicesScript);
     }
 
     public void HandleArtifactChoice(int artifactID)

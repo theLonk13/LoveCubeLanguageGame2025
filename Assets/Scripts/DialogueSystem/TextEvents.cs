@@ -17,6 +17,11 @@ public class TextEvents : MonoBehaviour
         TextEventInvoker.LinkFound += CheckEventType;
     }
 
+    private void OnDestroy()
+    {
+        TextEventInvoker.LinkFound -= CheckEventType;
+    }
+
     public void CheckEventType(TMP_LinkInfo textEvent)
     {
         switch (textEvent.GetLinkID())
@@ -54,11 +59,15 @@ public class TextEvents : MonoBehaviour
                 break;
             case "SetupArtifactChoices":
                 //use to tell dialogue manager to read artifact list and setup choice ui to display all of the artifacts for player to choose
+                Debug.Log("Setting up artifact choices");
                 dialogueMan.SetupArtifactChoices();
                 break;
             case "ChooseArtifact":
                 //use to tell dialogue manager that an artifact has been chosen, and to look up the specific dialogue text script to show
                 ParseArtifactChoice(textEvent.GetLinkText());
+                break;
+            case "UpdateArtifactResearch":
+                // Use to add research points to artifacts during cutscene
                 break;
             default:
                 Debug.Log("default event triggered");
@@ -84,11 +93,32 @@ public class TextEvents : MonoBehaviour
         try
         {
             choice1Text = splitStrings[1];
-            choice1Line = int.Parse(splitStrings[2]);
+            if(int.TryParse(splitStrings[2], out int result1))
+            {
+                choice1Line = result1;
+            }
+            else
+            {
+                throw new Exception("Choice 1 line failed to parse");
+            }
             choice2Text = splitStrings[3];
-            choice2Line = int.Parse(splitStrings[4]);
+            if (int.TryParse(splitStrings[4], out int result2))
+            {
+                choice2Line = result2;
+            }
+            else
+            {
+                throw new Exception("Choice 2 line failed to parse");
+            }
             choice3Text = splitStrings[5];
-            choice3Line = int.Parse(splitStrings[6]);
+            if (int.TryParse(splitStrings[6], out int result3))
+            {
+                choice3Line = result3;
+            }
+            else
+            {
+                throw new Exception("Choice 3 line failed to parse");
+            }
         }
         catch (Exception e)
         {
