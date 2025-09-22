@@ -64,4 +64,12 @@ public class ArtifactsManager : MonoBehaviour
         }
         return null;
     }
+
+    public void HideArtifactsOffscreen()
+    {
+        foreach(Artifact a in artifacts)
+        {
+            a.MoveToScreenLocation(this.gameObject);
+        }
+    }
 }

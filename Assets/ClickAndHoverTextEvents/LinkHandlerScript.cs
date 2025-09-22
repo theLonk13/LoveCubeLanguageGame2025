@@ -46,6 +46,12 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
         //*/
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (hoverEventsEnabled) CheckMouseHover();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!clickEventsEnabled) return;
@@ -79,9 +85,5 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(hoverEventsEnabled) CheckMouseHover();
-    }
+
 }

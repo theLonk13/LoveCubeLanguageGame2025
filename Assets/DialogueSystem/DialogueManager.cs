@@ -9,19 +9,24 @@ using UnityEngine;
  */
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Other Managers")]
     // Conversation Manager
     [SerializeField] ConversationManager conversationMan;
     // Location Scene Manager
     [SerializeField] LocationSceneManager locationMan;
 
+    [Header("Textboxes")]
     // Textboxes for dialogue
     [SerializeField] TextMeshProUGUI nameTextBox;
     [SerializeField] TextMeshProUGUI dialogueTextBox;
     [SerializeField] TextMeshProUGUI languageTextBox;
 
+    [Header("Choice objects")]
     // ChoicesUI
     [SerializeField] GameObject choicesUI;
+    [SerializeField] GameObject choiceOptionPrefab;
 
+    [Header("Other variables")]
     // List of sentences
     private List<string> sentences;
     // Tracks where the dialogue manager is in the list of sentences
@@ -158,6 +163,20 @@ public class DialogueManager : MonoBehaviour
         choiceTextboxes[2].text = choice3Text;
         choiceLineJumpIndices[2] = choice3Line;
         conversationMan.UpdateShowChoices(true);
+    }
+
+    //Version of choice setup that takes arrays of choices instead of a fixed amount
+    public void SetupChoices(string[] choiceTexts, int[] choiceLines)
+    {
+        if (choiceOptionPrefab == null) { return; }
+
+        // TODO reconfigure the choiceUI in game to work with this method
+        foreach(string choice in choiceTexts)
+        {
+            // TODO instantiate a choice option and change the text to the given text
+        }
+
+        choiceLineJumpIndices = choiceLines;
     }
 
     //Sets up dialogue to flow accordingly to the choice player has selected

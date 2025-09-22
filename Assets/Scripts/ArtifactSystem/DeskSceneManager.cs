@@ -31,6 +31,14 @@ public class DeskSceneManager : MonoBehaviour
         if(artifactMan == null) { LoadArtifacts(); }
     }
 
+    private void OnDestroy()
+    {
+        if(artifactMan != null)
+        {
+            artifactMan.HideArtifactsOffscreen();
+        }
+    }
+
     public void LoadArtifacts()
     {
         artifactMan = ArtifactsManager.Instance;
