@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,19 +8,26 @@ using UnityEngine.UI;
 
 public class Location : MonoBehaviour
 {
-    public GameObject location;
+    public GameObject locationObject; // GameObject set in Start()
     public string locationName;
-    [TextArea] public string locationInfo;
-    public int timeCost;
-    public string sceneLoad;
-    public bool visible;
+    [TextArea] public string locationInfo; // Additional description of Location
+    [SerializeField] private Sprite mapIcon; // Icon in Map
+    private Image im; // Component
+    public int timeCost; // Cost to visit location
+    public string sceneLoad; // Scene for location to load
+    public bool visible; // Whether location is visible in map or not
 
     [SerializeField] private bool debugMode;
-    
-    // Start is called before the first frame update
+    [SerializeField] private TimeTrack TimeTracker;
+    public bool showMorning;
+    public bool showAfternoon;
+    public bool showEvening;
+
     void Start()
     {
-        
+        locationObject = gameObject;
+        im = GetComponent<Image>();
+        im.sprite = mapIcon;        
     }
 
     public void loadScene()
@@ -32,18 +40,29 @@ public class Location : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(debugMode)
-        {
-            //SetVisible(visible);
-        }
+        
     }
 
     public bool IsVisible() { return visible; }
 
-    public void SetVisible(bool isVisible)
+    public void GoToLocation()
     {
-        Debug.Log($"{locationName}: Set Visible: {visible}");
-        visible = isVisible;
-        location.SetActive(isVisible);
+        if(timeCost <= TimeTracker.dayUnits)
+        {
+            TimeTracker.useDayUnit();
+            Debug.Log($"{locationName}: Loading {sceneLoad}");
+            bool confirm = false;
+            Debug.Log($"Moving here will take {timeCost}, would you like to go?");
+            //load Text box to confirm yes or no
+            //confirm = askUser() //returns true or false
+            if(confirm)
+            {
+                //loadScene();
+            }
+        } else
+        {
+            Debug.Log($"{locationName}: Cost Too Much: {timeCost} , {TimeTracker.dayUnits}");
+            //load dialogue
+        }
     }
 }

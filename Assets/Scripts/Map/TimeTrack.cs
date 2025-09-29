@@ -13,7 +13,7 @@ public class TimeTrack : MonoBehaviour
 
     public int dayPhaseCost = 2; // How many units until next phase of the day
     private int dayPhaseCounter = 0;
-    private int dayPhaseID = 0;
+    private int dayPhaseID = 0; // Corresponds to phase of day
 
     public int weeksPerArc = 3;
     public int week = 0;
@@ -69,12 +69,11 @@ public class TimeTrack : MonoBehaviour
     {
         text.text = 
             "Day Units:" + dayUnits + "\n" +
-            "Day Units Used" + checkUnitsLeft() + "\n" +
             "Day: " + checkDay() + ": " + dayOfWeek.ToString() + "\n" +
-            "Week:" + week + "\n" +
             "Day Phase: " + dayPhaseID + ": " + dayPhase.ToString() + "\n" +
-            "Day Phase Counter: " + dayPhaseCounter + "\n";
-
+            "Week:" + week + "\n" +
+            "Day Phase Counter: " + dayPhaseCounter + "\n" +
+            "Check Day Units Left" + checkUnitsLeft() + "\n";
     }
 
     public void setDayUnits(int dayUnits)
@@ -100,7 +99,12 @@ public class TimeTrack : MonoBehaviour
         convertDayPhaseID();
     }
 
-    // Main function for locations. Have a button use this function to use a day unit.
+    public int getDayPhaseID()
+    {
+        return dayPhaseID;
+    }
+
+    // Main function for locations. Uses day units.
     public void useDayUnit()
     {
         dayUnits -= dayCost;
