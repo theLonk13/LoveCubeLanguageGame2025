@@ -19,6 +19,7 @@ public class Location : MonoBehaviour
 
     [SerializeField] private bool debugMode;
     [SerializeField] private TimeTrack TimeTracker;
+    private MapManager MapManager;
     public bool showMorning;
     public bool showAfternoon;
     public bool showEvening;
@@ -27,7 +28,8 @@ public class Location : MonoBehaviour
     {
         locationObject = gameObject;
         im = GetComponent<Image>();
-        im.sprite = mapIcon;        
+        im.sprite = mapIcon;
+        MapManager = FindObjectOfType<MapManager>();
     }
 
     public void loadScene()
@@ -51,18 +53,18 @@ public class Location : MonoBehaviour
         {
             TimeTracker.useDayUnit();
             Debug.Log($"{locationName}: Loading {sceneLoad}");
-            bool confirm = false;
             Debug.Log($"Moving here will take {timeCost}, would you like to go?");
-            //load Text box to confirm yes or no
-            //confirm = askUser() //returns true or false
-            if(confirm)
-            {
-                //loadScene();
-            }
+            loadScene();
+            
         } else
         {
             Debug.Log($"{locationName}: Cost Too Much: {timeCost} , {TimeTracker.dayUnits}");
             //load dialogue
         }
+    }
+
+    public void ClickOnLocation()
+    {
+        MapManager.showConfirmation(this);
     }
 }
