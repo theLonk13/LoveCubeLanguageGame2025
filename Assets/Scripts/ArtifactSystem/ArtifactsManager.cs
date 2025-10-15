@@ -13,6 +13,7 @@ public class ArtifactsManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
@@ -53,5 +54,22 @@ public class ArtifactsManager : MonoBehaviour
     public Artifact[] GetArtifacts()
     {
         return artifacts;
+    }
+
+    public Artifact FindArtifact(int ID)
+    {
+        foreach(Artifact artifact in artifacts)
+        {
+            if(artifact.artifactID == ID) return artifact;
+        }
+        return null;
+    }
+
+    public void HideArtifactsOffscreen()
+    {
+        foreach(Artifact a in artifacts)
+        {
+            a.MoveToScreenLocation(this.gameObject);
+        }
     }
 }

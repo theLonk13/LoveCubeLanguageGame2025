@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DeskSceneManager : MonoBehaviour
@@ -8,6 +9,10 @@ public class DeskSceneManager : MonoBehaviour
     private Artifact[] artifacts;
 
     [SerializeField] GameObject[] artifactLocations;
+
+    [SerializeField] Animator expandedTagsAnim;
+    [SerializeField] TextMeshProUGUI expandedTagsText;
+    bool showExpandedTags = false;
 
     private void Awake()
     {
@@ -26,6 +31,14 @@ public class DeskSceneManager : MonoBehaviour
         if(artifactMan == null) { LoadArtifacts(); }
     }
 
+    private void OnDestroy()
+    {
+        if(artifactMan != null)
+        {
+            artifactMan.HideArtifactsOffscreen();
+        }
+    }
+
     public void LoadArtifacts()
     {
         artifactMan = ArtifactsManager.Instance;
@@ -38,9 +51,31 @@ public class DeskSceneManager : MonoBehaviour
     {
         for (int i = 0; i < artifactLocations.Length && i < artifacts.Length; i++)
         {
-            Debug.Log(artifactLocations[i]);
-            Debug.Log(artifacts[i]);
+            //Debug.Log(artifactLocations[i]);
+            //Debug.Log(artifacts[i]);
             artifacts[i].MoveToScreenLocation(artifactLocations[i]);
+            artifacts[i].SetDeskSceneManager(this);
+            artifacts[i].SetAsDeskArtifact();
+        }
+    }
+
+    public void DisplayExpandedTags(string artifactInfo = null)
+    {
+        if(artifactInfo == null)
+        {
+            showExpandedTags = false;
+            expandedTagsAnim.SetBool("ShowExpandedTags", false);
+            return;
+        }
+
+        if(expandedTagsAnim != null)
+        {
+            showExpandedTags = !showExpandedTags;
+            expandedTagsAnim.SetBool("ShowExpandedTags", showExpandedTags);
+        }
+        if(expandedTagsText != null)
+        {
+            expandedTagsText.text = artifactInfo;
         }
     }
 

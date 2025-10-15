@@ -9,17 +9,24 @@ using UnityEngine;
  */
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Other Managers")]
     // Conversation Manager
     [SerializeField] ConversationManager conversationMan;
+    // Location Scene Manager
+    [SerializeField] LocationSceneManager locationMan;
 
+    [Header("Textboxes")]
     // Textboxes for dialogue
     [SerializeField] TextMeshProUGUI nameTextBox;
     [SerializeField] TextMeshProUGUI dialogueTextBox;
     [SerializeField] TextMeshProUGUI languageTextBox;
 
+    [Header("Choice objects")]
     // ChoicesUI
     [SerializeField] GameObject choicesUI;
+    [SerializeField] GameObject choiceOptionPrefab;
 
+    [Header("Other variables")]
     // List of sentences
     private List<string> sentences;
     // Tracks where the dialogue manager is in the list of sentences
@@ -61,8 +68,8 @@ public class DialogueManager : MonoBehaviour
         }
         sentenceTracker = -1;
 
-        nameTextBox.text = dialogue.speakerName;
-        dialogueAnim.SetBool("Open", true);
+        if(nameTextBox!= null)nameTextBox.text = dialogue.speakerName;
+        if(dialogueAnim != null) dialogueAnim.SetBool("Open", true);
 
         DisplayNextSentence();
     }
@@ -158,6 +165,20 @@ public class DialogueManager : MonoBehaviour
         conversationMan.UpdateShowChoices(true);
     }
 
+    //Version of choice setup that takes arrays of choices instead of a fixed amount
+    public void SetupChoices(string[] choiceTexts, int[] choiceLines)
+    {
+        if (choiceOptionPrefab == null) { return; }
+
+        // TODO reconfigure the choiceUI in game to work with this method
+        foreach(string choice in choiceTexts)
+        {
+            // TODO instantiate a choice option and change the text to the given text
+        }
+
+        choiceLineJumpIndices = choiceLines;
+    }
+
     //Sets up dialogue to flow accordingly to the choice player has selected
     public void SelectChoice(int choiceIndex)
     {
@@ -195,5 +216,44 @@ public class DialogueManager : MonoBehaviour
     public void ChangeLanguage(string language)
     {
         languageTextBox.text = $"SPEAKING {language.ToUpper()}";
+    }
+
+    //KNOWN ISSUE: CANNOT HANDLE MORE THAN 3 ARTIFACTS. NEED TO MODIFY CHOICE HANDLING TO BE DYNAMIC
+    public void SetupArtifactChoices()
+    {
+        ArtifactsManager artifactMan = ArtifactsManager.Instance;
+        Artifact[] artifacts = artifactMan.GetArtifacts();
+        DialogueTextScript artifactChoicesScript = ScriptableObject.CreateInstance<DialogueTextScript>();
+        string[] choiceStrings = new string[artifacts.Length + 1];
+
+        // Setup directory string for choices
+        string directoryString = "#What artifact should I research? <link=\"Choice\"><style=\"Invis\"><;";
+        int i = 1;
+        foreach (Artifact artifact in artifacts)
+        {
+            directoryString += $"{artifact.artifactName};{i++};";
+        }
+        directoryString += "></link></style>";
+        choiceStrings[0] = directoryString;
+        Debug.Log($"Directory string: {directoryString}");
+
+        // Fill in choice lines with tags to handle artifact selections
+        for (i = 1; i < choiceStrings.Length; i++)
+        {
+            choiceStrings[i] = $"#<link=\"ChooseArtifact\">{artifacts[i - 1].artifactID}</link>";
+        }
+        
+        artifactChoicesScript.sentences = choiceStrings;
+
+        ChangeScripts(artifactChoicesScript);
+    }
+
+    public void HandleArtifactChoice(int artifactID)
+    {
+        Debug.Log($"Player selected artifact of ID {artifactID}");
+        if(locationMan != null)
+        {
+            locationMan.PlayArtifactLocationDialogue(artifactID);
+        }
     }
 }

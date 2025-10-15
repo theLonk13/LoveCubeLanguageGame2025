@@ -20,6 +20,12 @@ public class TextEventInvoker : MonoBehaviour
     {
         TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(CheckForLink);
     }
+
+    private void OnDestroy()
+    {
+        TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(CheckForLink);
+    }
+
     private void Awake()
     {
         textbox = GetComponent<TMP_Text>();

@@ -23,6 +23,9 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
     public delegate void ClickOnLinkEvent(string keyword);
     public static event ClickOnLinkEvent OnClickedOnLinkEvent;
 
+    public delegate void ClickOnLinkEventLinkInfo(TMP_LinkInfo linkInfo);
+    public static event ClickOnLinkEventLinkInfo OnClickedOnLinkEventLinkInfo;
+
     public delegate void HoverOverLinkEvent(string keyword);
     public static event HoverOverLinkEvent OnHoverOverLinkEvent;
 
@@ -46,6 +49,12 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
         //*/
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (hoverEventsEnabled) CheckMouseHover();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!clickEventsEnabled) return;
@@ -56,7 +65,8 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
         if (linkTaggedText != -1)
         {
             TMP_LinkInfo linkInfo = textBox.textInfo.linkInfo[linkTaggedText];
-            OnClickedOnLinkEvent?.Invoke(linkInfo.GetLinkText());
+            OnClickedOnLinkEventLinkInfo?.Invoke(linkInfo);
+            //Debug.Log("Link clicked");
         }
         else
         {
@@ -79,9 +89,5 @@ public class LinkHandlerScript : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(hoverEventsEnabled) CheckMouseHover();
-    }
+
 }
