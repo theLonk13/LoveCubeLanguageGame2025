@@ -88,8 +88,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 459179231793839776}
-  - component: {fileID: 5382414043976643072}
   - component: {fileID: 4163076788934507054}
+  - component: {fileID: 5382414043976643072}
   - component: {fileID: 188296168808978751}
   - component: {fileID: 2765598035007218218}
   m_Layer: 5
@@ -116,17 +116,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 65}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5382414043976643072
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9179541893573314094}
-  m_CullTransparentMesh: 1
 --- !u!114 &4163076788934507054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,10 +131,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb605689b27bc154bab1590806fb3d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationObject: {fileID: 0}
   locationName: 
   locationInfo: 
+  mapIcon: {fileID: 0}
   timeCost: 0
   sceneLoad: 
+  visible: 0
+  debugMode: 0
+  TimeTracker: {fileID: 0}
+  showMorning: 0
+  showAfternoon: 0
+  showEvening: 0
+--- !u!222 &5382414043976643072
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179541893573314094}
+  m_CullTransparentMesh: 1
 --- !u!114 &188296168808978751
 MonoBehaviour:
   m_ObjectHideFlags: 0
