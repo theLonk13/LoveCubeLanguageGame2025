@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f0721b7b6e78e41a59ac47e20dd7f4, type: 3}
+  m_Name: 00_TestObj1
+  m_EditorClassIdentifier: 
+  name: Test Object 1
+  art: {fileID: 21300000, guid: 84f03d58bb2911a4e94068bf1d39e7ce, type: 3}
+  info: This is object 1 in the tabs

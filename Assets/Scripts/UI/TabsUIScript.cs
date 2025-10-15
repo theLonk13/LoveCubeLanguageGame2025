@@ -6,6 +6,9 @@ public class TabsUIScript : MonoBehaviour
 {
     [SerializeField] Animator animator;
 
+    [Header("Tabs")]
+    [SerializeField] RectTransform peopleTab;
+
     // Start is called before the first frame update
     void Start()
     {

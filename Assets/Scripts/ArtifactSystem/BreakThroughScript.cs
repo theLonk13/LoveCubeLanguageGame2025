@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class BreakThroughScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI breakthroughTextbox;
     [TextArea(3, 10)]
     [SerializeField] string breakthroughText = "";
+    [TextArea(3, 10)]
+    [SerializeField] string[] correctChoices;
 
     [SerializeField] WordDialSelectorUI wordDialScript;
     TMP_LinkInfo currLinkInfo;
@@ -136,5 +139,34 @@ public class BreakThroughScript : MonoBehaviour
         }
 
         return output;
+    }
+
+    public bool SubmitBreakthrough()
+    {
+        TMP_LinkInfo linkInfo;
+        string[] splitString;
+        try
+        {
+            for(int i = 0; i < correctChoices.Length; i++)
+            {
+                linkInfo = breakthroughTextbox.textInfo.linkInfo[i];
+                splitString = linkInfo.GetLinkText().Split(";");
+                if (!splitString[0].Contains(correctChoices[i]))
+                {
+                    return false;
+                }
+            }
+        }catch(Exception e)
+        {
+
+        }
+
+
+        return true;
+    }
+
+    public void debug_CheckBreakthrough()
+    {
+        Debug.Log($"Checking if breakthrough is correct: {SubmitBreakthrough()}");
     }
 }
