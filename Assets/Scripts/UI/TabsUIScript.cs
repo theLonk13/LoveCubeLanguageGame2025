@@ -9,6 +9,10 @@ public class TabsUIScript : MonoBehaviour
     [Header("Tabs")]
     [SerializeField] RectTransform peopleTab;
 
+    [Header("Scripts for predetermined info slots in tabs")]
+    [SerializeField] TabInfoObjectScript[] peopleInfoObjects;
+    [SerializeField] TabInfoObjectScript[] placesInfoObjects;
+
     // Start is called before the first frame update
     void Start()
     {

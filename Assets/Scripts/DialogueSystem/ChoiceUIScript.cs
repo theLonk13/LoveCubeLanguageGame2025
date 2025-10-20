@@ -10,9 +10,12 @@ public class ChoiceUIScript : MonoBehaviour
     [SerializeField] private GameObject[] choiceObjects;
     [SerializeField] private TMP_Text[] choiceTexts;
 
+    [SerializeField] GameObject choiceParent;
+
     // Update is called once per frame
     void Update()
     {
+        /*
         for (int i = 0; i < choiceObjects.Length; i++)
         {
             if (choiceTexts[i].text.Equals("") && choiceObjects[i].activeSelf)
@@ -24,5 +27,6 @@ public class ChoiceUIScript : MonoBehaviour
                 choiceObjects[i].SetActive(true);
             }
         }
+        //*/
     }
 }

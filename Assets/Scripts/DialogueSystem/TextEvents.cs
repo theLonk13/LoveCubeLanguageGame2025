@@ -5,6 +5,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using System;
 using UnityEditor;
+using UnityEngine.UIElements;
 
 // this script identifies and executes events based on link tags found in text box
 public class TextEvents : MonoBehaviour
@@ -66,8 +67,11 @@ public class TextEvents : MonoBehaviour
                 //use to tell dialogue manager that an artifact has been chosen, and to look up the specific dialogue text script to show
                 ParseArtifactChoice(textEvent.GetLinkText());
                 break;
-            case "UpdateArtifactResearch":
-                // Use to add research points to artifacts during cutscene
+            case "TagUnlock":
+                ParseTagUnlock(textEvent.GetLinkText());
+                break;
+            case "TabInfoUnlock":
+                //use to unlock a tab info object
                 break;
             default:
                 Debug.Log("default event triggered");
@@ -84,6 +88,8 @@ public class TextEvents : MonoBehaviour
         Debug.Log(splitStrings.ToString());
         //if (splitStrings.Length < 6) { return; }
 
+        //OLD CHOICE SETUP
+        /*
         string choice1Text = "";
         string choice2Text = "";
         string choice3Text = "";
@@ -127,6 +133,23 @@ public class TextEvents : MonoBehaviour
         }
         Debug.LogFormat($"Text Events: {choice1Text} : {choice1Line} : {choice2Text} : {choice2Line} : {choice3Text} : {choice3Line}");
         dialogueMan.SetupChoices(choice1Text, choice1Line, choice2Text, choice2Line, choice3Text, choice3Line);
+        //*/
+
+        //NEW CHOICE SETUP
+        string[] choiceTexts = new string[(splitStrings.Length - 2) / 2];
+        int[] choiceLines = new int[choiceTexts.Length];
+        Debug.Log($"choiceTexts Length : {choiceTexts.Length}\nchoiceLines Length : {choiceLines.Length}");
+        for(int i = 1; i < splitStrings.Length - 1; i++)
+        {
+            if(i%2 == 1) // text element
+            {
+                choiceTexts[i/2] = splitStrings[i];
+            }else if(i%2 == 0) // choice line element
+            {
+                choiceLines[i/2 - 1] = int.Parse(splitStrings[i]);
+            }
+        }
+        dialogueMan.SetupChoices(choiceTexts, choiceLines);
     }
 
     // Handles a line jump in script
@@ -239,5 +262,15 @@ public class TextEvents : MonoBehaviour
         {
             dialogueMan.HandleArtifactChoice(artifactID);
         }
+    }
+
+    // Parses string formatted <;[artifactID];[unlockedTagID];[disabledTagID];> and unlocks corresponding tag
+    private void ParseTagUnlock(string linkText)
+    {
+        string[] splitStrings = linkText.Split(";");
+        int artifactID = int.Parse((splitStrings[1]).Trim());
+        int unlockedTagID = int.Parse((splitStrings[2]).Trim());
+        int disabledTagID = int.Parse((splitStrings[3]).Trim());
+        ArtifactsManager.Instance.TagUnlock(artifactID, unlockedTagID, disabledTagID);
     }
 }

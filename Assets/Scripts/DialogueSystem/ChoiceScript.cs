@@ -45,7 +45,11 @@ public class ChoiceScript : MonoBehaviour
         {
             return;
         }
+    }
 
-
+    public void SetupChoice(string choiceText, int choiceIndex)
+    {
+        textbox.text = choiceText;
+        this.choiceIndex = choiceIndex;
     }
 }

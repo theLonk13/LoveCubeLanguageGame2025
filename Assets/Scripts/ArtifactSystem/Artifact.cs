@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// a prefab to be instantiated with an artifact data object to be interacted with
 public class Artifact : MonoBehaviour
 {
     ArtifactData thisArtifactData;
@@ -17,7 +18,10 @@ public class Artifact : MonoBehaviour
     DeskSceneManager deskSceneMan;
     [SerializeField] Button thisArtifactButton;
 
-    [Header("Research Level Variables")]
+    public string[] tagUnlockStrings = null;
+    int[] tagUnlocks = null;
+
+    [Header("Research Level Variables - DEPRECATED")]
     public int startResearchLevel = 0;
     public int currResearchLevel = 0;
     public int maxResearchLevel = 1;
@@ -27,6 +31,8 @@ public class Artifact : MonoBehaviour
     public string[] recordUnlocks = null;
     [Tooltip("Locations where this artifact gains research bonuses")]
     public string[] bonusLocations = null;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +57,8 @@ public class Artifact : MonoBehaviour
         keywordUnlocks = thisArtifactData.keywordUnlocks;
         recordUnlocks = thisArtifactData.recordUnlocks;
         bonusLocations = thisArtifactData.bonusLocations;
+        tagUnlockStrings = thisArtifactData.tagUnlocks;
+        tagUnlocks = new int[tagUnlockStrings.Length];
 
         if (artifactArt != null && image != null)
         {
@@ -86,7 +94,37 @@ public class Artifact : MonoBehaviour
         Debug.LogFormat($"DeskOnClick for button {this.ToString()} with ID {artifactID} activated");
         if(deskSceneMan != null)
         {
-            deskSceneMan.DisplayExpandedTags($"Test expanded tags for artifact ID {artifactID}");
+            deskSceneMan.DisplayExpandedTags($"Test expanded tags for artifact ID {artifactID}\n\n{GenerateTagText()}");
         }
+    }
+
+    // marks an entry in tagUnlocks as 1, indicating the corresponding tag in tagUnlockStrings has been unlocked
+    public bool UnlockTag(int unlockedTagID, int disabledTagID = -1)
+    {
+        if(unlockedTagID >= 0 && unlockedTagID < tagUnlocks.Length)
+        {
+            tagUnlocks[unlockedTagID] = 1;
+            if(disabledTagID >= 0 && disabledTagID < tagUnlocks.Length)
+            {
+                tagUnlocks[disabledTagID] = 0;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private string GenerateTagText()
+    {
+        string output = "";
+
+        for(int i = 0; i < tagUnlockStrings.Length; i++)
+        {
+            if (tagUnlocks[i] == 1)
+            {
+                output += tagUnlockStrings[i];
+            }
+        }
+
+        return output;
     }
 }

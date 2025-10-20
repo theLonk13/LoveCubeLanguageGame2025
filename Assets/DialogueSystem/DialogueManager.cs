@@ -170,13 +170,26 @@ public class DialogueManager : MonoBehaviour
     {
         if (choiceOptionPrefab == null) { return; }
 
+        ClearChoices();
+
         // TODO reconfigure the choiceUI in game to work with this method
-        foreach(string choice in choiceTexts)
+        for(int i = 0; i < choiceTexts.Length;i++)
         {
             // TODO instantiate a choice option and change the text to the given text
+            ChoiceScript newChoice = GameObject.Instantiate(choiceOptionPrefab, choicesUI.transform).GetComponent<ChoiceScript>();
+            newChoice.SetupChoice(choiceTexts[i], i);
         }
 
         choiceLineJumpIndices = choiceLines;
+        conversationMan.UpdateShowChoices(true);
+    }
+
+    void ClearChoices()
+    {
+        for (int i = 0; i < choicesUI.transform.childCount; i++)
+        {
+            Destroy(choicesUI.transform.GetChild(i).gameObject);
+        }
     }
 
     //Sets up dialogue to flow accordingly to the choice player has selected

@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conversationMan: {fileID: 0}
+  locationMan: {fileID: 0}
   nameTextBox: {fileID: 0}
   dialogueTextBox: {fileID: 0}
+  languageTextBox: {fileID: 0}
   choicesUI: {fileID: 0}
+  choiceOptionPrefab: {fileID: 4672360510987297061, guid: 12a5b37aaec78bc4caf53ac09005a2c1, type: 3}
   CharacterDisplayDelaySeconds: 0.05
   choiceTextboxes: []
   dialogueAnim: {fileID: 0}

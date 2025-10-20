@@ -72,4 +72,10 @@ public class ArtifactsManager : MonoBehaviour
             a.MoveToScreenLocation(this.gameObject);
         }
     }
+
+    public void TagUnlock(int artifactID, int unlockedTagID, int disabledTagID)
+    {
+        Artifact artifact = FindArtifact(artifactID);
+        artifact.UnlockTag(unlockedTagID, disabledTagID);
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Data asset containing static data on an artifact
 [CreateAssetMenu(fileName = "NewArtifactData", menuName = "Artifact Data")]
 public class ArtifactData : ScriptableObject
 {
@@ -11,7 +12,11 @@ public class ArtifactData : ScriptableObject
     public int researchPoints = 0;
     public Sprite artifactArt;
 
-    [Header("Research Level Variables")]
+
+    [Tooltip("Tags that unlock when player visits certain areas and completes certain actions")] // The unlock will be triggered through links in dialogue
+    public string[] tagUnlocks = null;
+
+    [Header("Research Level Variables - DEPRECATED")]
     public int startResearchLevel = 0;
     public int currResearchLevel = 0;
     public int maxResearchLevel = 1;

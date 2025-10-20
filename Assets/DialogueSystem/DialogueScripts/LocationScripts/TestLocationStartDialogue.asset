@@ -15,6 +15,6 @@ MonoBehaviour:
   speakerName: 
   sentences:
   - '#What would you like to do?'
-  - '#<link="Choice"><style="Invis"><;Look at artifacts;2;Nothing;3;;;></link></style>'
+  - '#<link="Choice"><style="Invis"><;Look at artifacts;2;Nothing;3;></link></style>'
   - '#<link="SetupArtifactChoices"></link>'
   - '#This test can''t do nothing yet :) <link="JumpToLine">0</link>'
